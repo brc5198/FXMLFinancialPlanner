@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="338.0" prefWidth="466.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FinancialPlanner.MainMenuController">
     <children>
-        <Button fx:id="button" layoutX="172.0" layoutY="285.0" onAction="#handleButtonAction" text="New Transaction" />
+        <Button fx:id="button" layoutX="119.0" layoutY="285.0" onAction="#handleButtonAction" text="New Transaction" />
         <Label fx:id="label" layoutX="168.0" layoutY="249.0" minHeight="16" minWidth="69" prefHeight="27.0" prefWidth="131.0" textAlignment="CENTER" />
       <TableView fx:id="table" layoutX="13.0" layoutY="40.0" prefHeight="200.0" prefWidth="441.0">
         <columns>
@@ -21,5 +21,6 @@
          </columnResizePolicy>
       </TableView>
       <Label layoutX="171.0" layoutY="14.0" text="Recent Transactions" textAlignment="CENTER" />
+      <Button fx:id="newBudgetButton" layoutX="257.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleNewBudgetAction" prefHeight="25.0" prefWidth="105.0" text="New Budget" />
     </children>
 </AnchorPane>

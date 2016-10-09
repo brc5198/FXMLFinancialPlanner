@@ -38,8 +38,31 @@ public class MainMenuController implements Initializable {
     @FXML private TableColumn<Transaction, String> locationColumn;
     @FXML private TableColumn<Transaction, String> timeColumn;
     @FXML private TableColumn<Transaction, String> amountColumn;
+    @FXML private Button newBudgetButton;
     
     private TransactionHandler theTransactionHandler = new TransactionHandler();
+    
+    @FXML
+    private void handleNewBudgetAction(ActionEvent event)
+    {
+        Node node = (Node)event.getSource();
+        Stage stage = (Stage)node.getScene().getWindow();
+        try
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("NewBudgetView.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+            /*
+            Internal error caused by missing FXML file.
+            Should probably quit the program. 
+            */
+        }
+    }
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {

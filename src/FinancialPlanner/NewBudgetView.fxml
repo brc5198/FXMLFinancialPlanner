@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="279.0" prefWidth="392.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FinancialPlanner.NewBudgetController">
+   <children>
+      <Button fx:id="saveButton" layoutX="223.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" prefHeight="40.0" prefWidth="120.0" text="Save" />
+      <Button fx:id="cancelButton" layoutX="75.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="40.0" prefWidth="120.0" text="Cancel" />
+      <GridPane layoutX="46.0" layoutY="31.0" prefHeight="157.0" prefWidth="297.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="63.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="234.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Category:" />
+            <Label text="Amount:" GridPane.rowIndex="1" />
+            <Label text="Start:" GridPane.rowIndex="2" />
+            <Label text="End:" GridPane.rowIndex="3" />
+            <DatePicker fx:id="startInput" prefHeight="25.0" prefWidth="223.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="endInput" prefHeight="25.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="categoryInput" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="amountInput" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </TextField>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
