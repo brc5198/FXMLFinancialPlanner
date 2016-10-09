@@ -21,7 +21,7 @@ public class BudgetHandler
         
         for(int i = 0; i < budgets.size(); i++)
         {
-            sum = sum + budgets.get(i).getAmount();
+            sum = sum + budgets.get(i).getBudgetAmount();
         }
         
         return sum;
