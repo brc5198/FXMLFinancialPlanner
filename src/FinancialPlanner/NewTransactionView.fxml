@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="279.0" prefWidth="392.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FinancialPlanner.NewTransactionController">
+   <children>
+      <Button layoutX="309.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" text="Save" />
+      <Button layoutX="24.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" text="Cancel" />
+      <TextField fx:id="locationField" layoutX="113.0" layoutY="43.0" />
+      <Label layoutX="45.0" layoutY="48.0" text="Location:" />
+      <TextField fx:id="amountField" layoutX="113.0" layoutY="86.0" />
+      <Label layoutX="45.0" layoutY="91.0" text="Amount:" />
+      <Label layoutX="45.0" layoutY="140.0" text="Time:" />
+      <CheckBox fx:id="nowBox" layoutX="97.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleNowBoxAction" selected="true" text="Now" />
+      <CheckBox fx:id="otherTimeBox" layoutX="197.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleOtherTimeBoxAction" text="Other Time" />
+      <DatePicker fx:id="datePicker" layoutX="97.0" layoutY="177.0" visible="false" />
+   </children>
+</AnchorPane>
