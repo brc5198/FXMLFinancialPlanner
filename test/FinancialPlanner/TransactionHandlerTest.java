@@ -42,14 +42,16 @@ public class TransactionHandlerTest {
      * Test of getTransactionHistory method, of class TransactionHandler.
      */
     @Test
-    public void testGetTransactionHistory() {
+    public void testGetresult() {
         System.out.println("getTransactionHistory");
         TransactionHandler instance = new TransactionHandler();
-        ArrayList<Transaction> expResult = null;
-        ArrayList<Transaction> result = instance.getTransactionHistory();
+        String expResult = "working";
+        String result = instance.getresult();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
+
+
     }
     
 }
