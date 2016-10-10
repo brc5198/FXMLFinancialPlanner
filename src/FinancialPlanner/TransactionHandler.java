@@ -23,4 +23,9 @@ public class TransactionHandler {
         return transactionHistory;
     }
     
+    public String getresult()
+    {
+        return "working";
+    }
+    
 }
