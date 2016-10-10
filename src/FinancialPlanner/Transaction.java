@@ -11,7 +11,7 @@ import javafx.beans.property.StringProperty;
 
 /**
  *
- * @author bradcaviston
+ * @author Marchetti
  */
 public class Transaction {
     

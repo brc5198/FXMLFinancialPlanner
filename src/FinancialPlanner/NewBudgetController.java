@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Ardjen
+ * @author stevenburns
  */
 public class NewBudgetController
 {

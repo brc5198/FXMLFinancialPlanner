@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author bradcaviston
+ * @author Ardjen
  */
 public class FinancialPlanner extends Application {
     

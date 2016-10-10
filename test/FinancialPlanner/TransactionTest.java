@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author bradcaviston
+ * @author Marchetti
  */
 public class TransactionTest {
     
