@@ -38,13 +38,14 @@ public class BudgetViewController
     public void handleSaveButton()
     {
         System.out.println("Save called");
+        app.removeWindow();
     }
     
     @FXML
     public void handleCancelButton()
     {
         System.out.println("Cancel called");
-        app.showDashWindow();
+        app.removeWindow();
     }
     
     public Budget requestNewBudget()

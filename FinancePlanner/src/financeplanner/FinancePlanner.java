@@ -112,6 +112,11 @@ public class FinancePlanner extends Application
         }
     }
     
+    public void removeWindow()
+    {
+        rootLayout.setLeft(null);
+    }
+    
     public BorderPane getRootLayout(){return rootLayout;}
     
     public static void main(String[] args)
