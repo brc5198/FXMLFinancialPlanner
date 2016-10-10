@@ -5,8 +5,13 @@
  */
 package FinancialPlanner;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.util.Callback;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,28 +48,16 @@ public class MainMenuControllerTest {
      * Test of initialize method, of class MainMenuController.
      */
     @Test
-    public void testInitialize() {
-        System.out.println("initialize");
-        URL url = null;
-        ResourceBundle rb = null;
+    public void testgetinitialize() {
+       System.out.println("getinitialized");
         MainMenuController instance = new MainMenuController();
-        instance.initialize(url, rb);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getTransactionHandler method, of class MainMenuController.
-     */
-    @Test
-    public void testGetTransactionHandler() {
-        System.out.println("getTransactionHandler");
-        MainMenuController instance = new MainMenuController();
-        TransactionHandler expResult = null;
-        TransactionHandler result = instance.getTransactionHandler();
+        String expResult = "made the table";
+        String result = instance.getinitialized();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
+
+
     
 }
