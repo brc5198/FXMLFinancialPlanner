@@ -5,13 +5,8 @@
  */
 package FinancialPlanner;
 
-
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.util.Callback;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -58,6 +53,4 @@ public class MainMenuControllerTest {
         //fail("The test case is a prototype.");
     }
 
-
-    
 }
