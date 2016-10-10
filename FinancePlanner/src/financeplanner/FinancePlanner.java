@@ -5,6 +5,9 @@
  */
 package financeplanner;
 
+import financeplanner.controller.BudgetViewController;
+import financeplanner.controller.DashController;
+import financeplanner.controller.TransactionViewController;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -53,7 +56,9 @@ public class FinancePlanner extends Application
             ioe.printStackTrace();
         }
         
-        //showDashWindow();
+        showDashWindow();
+        //showTransactionWindow();
+        //showBudgetWindow();
     }
     
     public void showDashWindow()
@@ -64,8 +69,42 @@ public class FinancePlanner extends Application
             AnchorPane dashWindow = (AnchorPane)loader.load();
             rootLayout.setCenter(dashWindow);
             
-            //DashController controller = loader.getController();
-            //contoller.setApp(this);
+            DashController controller = loader.getController();
+            controller.setApp(this);
+        }
+        catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+    }
+    
+    public void showTransactionWindow()
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(FinancePlanner.class.getResource("view/TransactionView.fxml"));
+            AnchorPane transactionWindow = (AnchorPane)loader.load();
+            rootLayout.setLeft(transactionWindow);
+            
+            TransactionViewController controller = loader.getController();
+            controller.setApp(this);
+        }
+        catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+    }
+    
+    public void showBudgetWindow()
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(FinancePlanner.class.getResource("view/BudgetView.fxml"));
+            AnchorPane budgetWindow = (AnchorPane)loader.load();
+            rootLayout.setLeft(budgetWindow);
+            
+            BudgetViewController controller = loader.getController();
+            controller.setApp(this);
         }
         catch(IOException ioe)
         {
