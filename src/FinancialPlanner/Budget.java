@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Budget {
     
-    private String name;
+    private String name; 
     
     // TODO -- should make dates into proper Date formats...to do later.
     private String startDate;
