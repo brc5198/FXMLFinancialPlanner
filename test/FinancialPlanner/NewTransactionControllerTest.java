@@ -43,14 +43,14 @@ public class NewTransactionControllerTest {
      * Test of initialize method, of class NewTransactionController.
      */
     @Test
-    public void testInitialize() {
-        System.out.println("initialize");
-        URL url = null;
-        ResourceBundle rb = null;
+    public void testhandleSaveButtonAction() {
+         System.out.println("getinitialized");
         NewTransactionController instance = new NewTransactionController();
-        instance.initialize(url, rb);
+        String expResult = "working";
+        String result = instance.getinitialized();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
     
 }

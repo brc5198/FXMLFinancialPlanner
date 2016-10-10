@@ -11,6 +11,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +26,7 @@ import javafx.stage.StageStyle;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 
 
 /**
@@ -85,6 +88,10 @@ public class MainMenuController implements Initializable {
         amountColumn.setCellValueFactory(cellData -> cellData.getValue().getAmountProperty());
         
         table.getItems().setAll(parseTransactionList());
+    }
+    public String getinitialized()
+    {
+        return "made the table";
     }
     
     private List<Transaction> parseTransactionList() {

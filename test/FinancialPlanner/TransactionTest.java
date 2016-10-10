@@ -5,18 +5,15 @@
  */
 package FinancialPlanner;
 
-import java.time.LocalDate;
-import javafx.beans.property.StringProperty;
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import java.time.LocalDate;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author Marchetti
+ * @author steve
  */
 public class TransactionTest {
     
@@ -30,97 +27,25 @@ public class TransactionTest {
     @AfterClass
     public static void tearDownClass() {
     }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
-    /**
-     * Test of getAmount method, of class Transaction.
-     */
     @Test
-    public void testGetAmount() {
-        System.out.println("getAmount");
-        Transaction instance = null;
-        double expResult = 0.0;
+    public void testgetamount() {
+        System.out.println("getamount");
+       Transaction instance = new Transaction(10.10,"Walmart");
+        String expResult = "10.1";
         double result = instance.getAmount();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getAmountProperty method, of class Transaction.
-     */
-    @Test
-    public void testGetAmountProperty() {
-        System.out.println("getAmountProperty");
-        Transaction instance = null;
-        StringProperty expResult = null;
-        StringProperty result = instance.getAmountProperty();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of getTimeStamp method, of class Transaction.
-     */
-    @Test
-    public void testGetTimeStamp() {
-        System.out.println("getTimeStamp");
-        Transaction instance = null;
-        LocalDate expResult = null;
-        LocalDate result = instance.getTimeStamp();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getTimeStampProperty method, of class Transaction.
-     */
-    @Test
-    public void testGetTimeStampProperty() {
-        System.out.println("getTimeStampProperty");
-        Transaction instance = null;
-        StringProperty expResult = null;
-        StringProperty result = instance.getTimeStampProperty();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getLocation method, of class Transaction.
-     */
-    @Test
-    public void testGetLocation() {
-        System.out.println("getLocation");
-        Transaction instance = null;
-        String expResult = "";
+        @Test
+    public void testgetLocation() {
+        System.out.println("getamount");
+       Transaction instance = new Transaction(10.10,"Walmart");
+        String expResult = "Walmart";
         String result = instance.getLocation();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of getLocationProperty method, of class Transaction.
-     */
-    @Test
-    public void testGetLocationProperty() {
-        System.out.println("getLocationProperty");
-        Transaction instance = null;
-        StringProperty expResult = null;
-        StringProperty result = instance.getLocationProperty();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }

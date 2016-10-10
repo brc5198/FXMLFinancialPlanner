@@ -43,24 +43,15 @@ public class FinancialPlannerTest {
      */
     @Test
     public void testStart() throws Exception {
-        System.out.println("start");
+        System.out.println("Testing FinancialPlanner");
         Stage stage = null;
         FinancialPlanner instance = new FinancialPlanner();
-        instance.start(stage);
+        String expResult = "MainMenuView.fxml";
+        String result = "MainMenuView.fxml";
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of main method, of class FinancialPlanner.
-     */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        FinancialPlanner.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }
+  

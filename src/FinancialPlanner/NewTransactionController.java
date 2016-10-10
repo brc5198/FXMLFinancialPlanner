@@ -33,6 +33,7 @@ public class NewTransactionController implements Initializable {
     @FXML private CheckBox nowBox;
     @FXML private CheckBox otherTimeBox;
     @FXML private DatePicker datePicker;
+    public String testinginitialized ="working";
     
     
     /**
@@ -40,9 +41,11 @@ public class NewTransactionController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
-    
+
+      public String getinitialized() {
+        return testinginitialized;
+    }
     @FXML
     private void handleOtherTimeBoxAction(ActionEvent event) {
         nowBox.setSelected(false);
@@ -113,5 +116,7 @@ public class NewTransactionController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+  
     
 }
