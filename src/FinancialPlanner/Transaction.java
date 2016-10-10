@@ -15,16 +15,19 @@ import javafx.beans.property.StringProperty;
  */
 public class Transaction {
     
-    private final double amount;
-    private final LocalDate timeStamp;
-    private final String location;
+    private  double amount;
+    private  LocalDate timeStamp;
+    private  String location;
     
     public Transaction(double newAmount, LocalDate newTimeStamp, String newLocation) {
         amount = newAmount;
         timeStamp = newTimeStamp;
         location = newLocation;
     }
-    
+      public Transaction(double newAmount, String newLocation) {
+        amount = newAmount;
+        location = newLocation;
+    }
     public double getAmount() {
         return amount;
     }
