@@ -8,9 +8,12 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 /**
- * FXML Controller class
- *
- * @author Ardjen
+ * @author Steven Burns
+ * @author Brad Caviston
+ * @author Ardjen Lane
+ * @author Briley Marchetti
+ * 
+ * Controller for BudgetView Window
  */
 public class BudgetViewController
 {
@@ -34,20 +37,29 @@ public class BudgetViewController
         
     }
     
+    /*
+    Handles save button
+    */
     @FXML
     public void handleSaveButton()
     {
         System.out.println("Save called");
-        app.removeWindow();
+        app.removeWindows();
     }
     
+    /*
+    Handles cancel button
+    */
     @FXML
     public void handleCancelButton()
     {
         System.out.println("Cancel called");
-        app.removeWindow();
+        app.removeWindows();
     }
     
+    /*
+    From BudgetHandler, creates a new budget
+    */
     public Budget requestNewBudget()
     {
         Budget newBudget = null;

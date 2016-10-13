@@ -6,19 +6,62 @@
 package financeplanner.controller;
 
 import financeplanner.model.Transaction;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
- *
- * @author Ardjen
+ * @author Steven Burns
+ * @author Brad Caviston
+ * @author Ardjen Lane
+ * @author Briley Marchetti
+ * 
+ * Responsible for creating and temporarily storing transactions
  */
-public class TransactionHandler
+final public class TransactionHandler
 {
-    private ArrayList<Transaction> transactions;
+    private static ArrayList<Transaction> transactions;
     
     public TransactionHandler()
     {
         transactions = new ArrayList<Transaction>();
+    }
+    
+    public Transaction requestNewTransaction(double amount, String timeStamp, String location)
+    {
+        Transaction newTransaction = new Transaction();
+        
+        newTransaction.setAmount(amount);
+        
+        if(timeStamp == null)
+        {
+            newTransaction.setTimeStamp(getCurrentTime());
+        }
+        else
+        {
+            newTransaction.setTimeStamp(timeStamp);
+        }
+        
+        if(location == null)
+        {
+            newTransaction.setLocation("");
+        }
+        else
+        {
+            newTransaction.setLocation(location);
+        }
+        
+        transactions.add(newTransaction);
+        return newTransaction;
+    }
+    
+    /*
+    Returns current time
+    */
+    private String getCurrentTime()
+    {
+        String currentTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date());
+        return currentTime;
     }
     
     public void setTransactions(ArrayList<Transaction> transactions){this.transactions = transactions;}

@@ -2,6 +2,14 @@ package financeplanner.model;
 
 import java.util.ArrayList;
 
+/**
+ * @author Steven Burns
+ * @author Brad Caviston
+ * @author Ardjen Lane
+ * @author Briley Marchetti
+ * 
+ * Responsible for modeling a budget 
+ */
 public class Budget
 {
     private String name;

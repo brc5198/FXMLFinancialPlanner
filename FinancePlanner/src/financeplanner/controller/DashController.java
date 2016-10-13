@@ -13,9 +13,12 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
 /**
- * FXML Controller class
- *
- * @author Ardjen
+ * @author Steven Burns
+ * @author Brad Caviston
+ * @author Ardjen Lane
+ * @author Briley Marchetti
+ * 
+ * Controller for the Dashboard view
  */
 public class DashController
 {
@@ -25,6 +28,7 @@ public class DashController
     @FXML private GridPane display;
     
     private FinancePlanner app;
+    
     /**
      * Initializes the controller class.
      */
@@ -33,6 +37,9 @@ public class DashController
         // TODO
     }    
     
+    /*
+    Handles transaction button
+    */
     @FXML
     private Transaction handleTransactionButton()
     {
@@ -44,6 +51,9 @@ public class DashController
         return newTransaction;
     }
     
+    /*
+    Handles budget button
+    */
     @FXML 
     private Budget handleBudgetButton()
     {
@@ -55,6 +65,9 @@ public class DashController
         return newBudget;
     }
     
+    /*
+    Handles history button
+    */
     @FXML 
     private void handleHistoryButton()
     {

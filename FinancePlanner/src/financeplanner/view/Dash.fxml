@@ -7,12 +7,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="financeplanner.controller.DashController">
+<AnchorPane id="AnchorPane" depthTest="DISABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="financeplanner.controller.DashController">
    <children>
       <VBox layoutX="265.0" layoutY="84.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ScrollPane fitToHeight="true" fitToWidth="true" pickOnBounds="false" prefHeight="310.0" prefViewportHeight="47.0" prefViewportWidth="600.0" prefWidth="600.0">
+            <ScrollPane fitToHeight="true" fitToWidth="true" pickOnBounds="false" prefHeight="310.0" prefViewportHeight="300.0" prefViewportWidth="600.0" prefWidth="600.0" VBox.vgrow="NEVER">
                <content>
                   <GridPane alignment="CENTER" gridLinesVisible="true" prefHeight="213.0" prefWidth="482.0">
                     <columnConstraints>
@@ -34,17 +33,17 @@
             </ScrollPane>
             <HBox alignment="CENTER" prefHeight="109.0" prefWidth="600.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="New Transaction">
+                  <Button fx:id="transactionButton" mnemonicParsing="false" onAction="#handleTransactionButton" prefHeight="50.0" prefWidth="120.0" text="New Transaction">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="New Budget">
+                  <Button fx:id="budgetButton" mnemonicParsing="false" onAction="#handleBudgetButton" prefHeight="50.0" prefWidth="120.0" text="New Budget">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="History">
+                  <Button fx:id="historyButton" mnemonicParsing="false" onAction="#handleHistoryButton" prefHeight="50.0" prefWidth="120.0" text="History">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>

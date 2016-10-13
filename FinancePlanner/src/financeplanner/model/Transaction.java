@@ -1,8 +1,13 @@
 package financeplanner.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+/**
+ * @author Steven Burns
+ * @author Brad Caviston
+ * @author Ardjen Lane
+ * @author Briley Marchetti
+ * 
+ * Responsible for modeling a Transaction
+ */
 public class Transaction
 {
     private double amount;
@@ -12,35 +17,6 @@ public class Transaction
     public Transaction()
     {
         
-    }
-    
-    public Transaction(double amount, String timeStamp, String location)
-    {
-        this.amount = amount;
-        
-        if(timeStamp == null)
-        {
-            this.timeStamp = this.getCurrentTime();
-        }
-        else
-        {
-            this.timeStamp = timeStamp;
-        }
-        
-        if(location == null)
-        {
-            this.location = "";
-        }
-        else
-        {
-            this.location = location;
-        }
-    }
-    
-    public String getCurrentTime()
-    {
-        String currentTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date());
-        return currentTime;
     }
     
     public void setAmount(double amount){this.amount = amount;}

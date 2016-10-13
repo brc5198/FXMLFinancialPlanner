@@ -5,11 +5,14 @@
  */
 package financeplanner;
 
+import financeplanner.controller.BudgetHandler;
 import financeplanner.controller.BudgetViewController;
 import financeplanner.controller.DashController;
+import financeplanner.controller.TransactionHandler;
 import financeplanner.controller.TransactionViewController;
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -20,16 +23,32 @@ import javafx.stage.Stage;
 
 
 /**
- *
- * @author Ardjen
+ * @author Steven Burns
+ * @author Brad Caviston
+ * @author Ardjen Lane
+ * @author Briley Marchetti
+ * 
+ * FinancePlanner acts as the master controller. When run, loads the main stage
+ * and the dashboard. It is responsible for loading other windows and their 
+ * controllers
  */
 public class FinancePlanner extends Application
 {
+    @FXML BorderPane borderPane; //Reference to main stage layout
+    
     private Stage primaryStage;
     private BorderPane rootLayout;
     
+    private TransactionHandler tHandler = new TransactionHandler();
+    private BudgetHandler bHandler = new BudgetHandler();
+    
+    
+    /*
+    Loads the root layout and the dashboard view.
+    Finds user's dimension and fits app to screen. 
+    */
     @Override
-    public void start(Stage primaryStage) throws Exception
+    public void start(Stage primaryStage)
     {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Finance Planner");
@@ -57,10 +76,11 @@ public class FinancePlanner extends Application
         }
         
         showDashWindow();
-        //showTransactionWindow();
-        //showBudgetWindow();
     }
     
+    /*
+    Loads the dashboard view and its controller
+    */
     public void showDashWindow()
     {
         try
@@ -78,6 +98,9 @@ public class FinancePlanner extends Application
         }
     }
     
+    /*
+    Loads view for saving transactions and its controller
+    */
     public void showTransactionWindow()
     {
         try
@@ -95,6 +118,9 @@ public class FinancePlanner extends Application
         }
     }
     
+    /*
+    Loads view for saving budgets and its controller
+    */
     public void showBudgetWindow()
     {
         try
@@ -112,12 +138,20 @@ public class FinancePlanner extends Application
         }
     }
     
-    public void removeWindow()
+    /*
+    Removes all windows except the center layout
+    */
+    public void removeWindows()
     {
         rootLayout.setLeft(null);
+        rootLayout.setRight(null);
+        rootLayout.setTop(null);
+        rootLayout.setBottom(null);
     }
     
     public BorderPane getRootLayout(){return rootLayout;}
+    public TransactionHandler getTransactionHandler(){return tHandler;}
+    public BudgetHandler getBudgetHandler(){return bHandler;}
     
     public static void main(String[] args)
     {
