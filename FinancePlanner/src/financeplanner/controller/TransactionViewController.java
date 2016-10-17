@@ -46,7 +46,7 @@ public class TransactionViewController
     Handles save button
     */
     @FXML
-    public void handleSaveButton()
+    private void handleSaveButton()
     {
         System.out.println("Save called");
         app.removeWindows();
@@ -68,10 +68,36 @@ public class TransactionViewController
     public Transaction requestNewTransaction()
     {
         Transaction newTransaction = null;
+        double amount = 0;
+        if(checkInput())
+        {
+            try
+            {
+                amount = Double.parseDouble(amountInput.getText());
+            }
+            catch(NumberFormatException nfe)
+            {
+                amount = 0;
+            }
+            
+            newTransaction = app.getTransactionHandler().requestNewTransaction(amount, dateInput.getValue().toString(), locationInput.getText());
+        }
         
         return newTransaction;
     }
 
+    private boolean checkInput()
+    {
+        boolean complete = true;
+        
+        if(amountInput.getText() == null){complete = false;}
+        if(locationInput.getText() == null){complete = false;}
+        if(dateInput.getValue() == null){complete = false;}
+        if(descriptionInput.getText() == null){complete = false;}
+        
+        return complete;
+    }
+    
     public void setApp(FinancePlanner app)
     {
         this.app = app;

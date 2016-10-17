@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 public class BudgetViewController
 {
 
+    @FXML TextField categoryInput;
     @FXML TextField amountInput;
     @FXML TextField locationInput;
     @FXML DatePicker startInput;
@@ -51,7 +52,7 @@ public class BudgetViewController
     Handles cancel button
     */
     @FXML
-    public void handleCancelButton()
+    private void handleCancelButton()
     {
         System.out.println("Cancel called");
         app.removeWindows();
@@ -63,8 +64,36 @@ public class BudgetViewController
     public Budget requestNewBudget()
     {
         Budget newBudget = null;
+        double amount = 0.0;
+        
+        if(checkInput())
+        {
+            try
+            {
+                amount = Double.parseDouble(amountInput.getText());
+            }
+            catch(NumberFormatException nfe)
+            {
+                amount = 0;
+            }
+            
+            newBudget = app.getBudgetHandler().requestNewBudget(categoryInput.getText(), startInput.getValue().toString(), endInput.getValue().toString(), amount);
+        }
         
         return newBudget;
+    }
+    
+    private boolean checkInput()
+    {
+        boolean complete = true;
+        
+        if(categoryInput.getText() == null){complete = false;}
+        if(locationInput.getText() == null){complete = false;}
+        if(amountInput.getText() == null){complete = false;}
+        if(startInput.getValue().toString() == null){complete = false;}
+        if(endInput.getValue().toString() == null){complete = false;}
+        
+        return complete;
     }
 
     public void setApp(FinancePlanner app)
