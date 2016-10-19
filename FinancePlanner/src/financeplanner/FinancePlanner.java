@@ -39,6 +39,10 @@ public class FinancePlanner extends Application
     private Stage primaryStage;
     private BorderPane rootLayout;
     
+    DashController dashControl;
+    BudgetViewController budgetControl;
+    TransactionViewController transactionControl;
+    
     private TransactionHandler tHandler = new TransactionHandler();
     private BudgetHandler bHandler = new BudgetHandler();
     
@@ -90,7 +94,8 @@ public class FinancePlanner extends Application
             rootLayout.setCenter(dashWindow);
             
             DashController controller = loader.getController();
-            controller.setApp(this);
+            controller.initialize(this);
+            dashControl = controller;
         }
         catch(IOException ioe)
         {
@@ -110,7 +115,8 @@ public class FinancePlanner extends Application
             rootLayout.setLeft(transactionWindow);
             
             TransactionViewController controller = loader.getController();
-            controller.setApp(this);
+            controller.initialize(this);
+            transactionControl = controller;
         }
         catch(IOException ioe)
         {
@@ -130,7 +136,8 @@ public class FinancePlanner extends Application
             rootLayout.setLeft(budgetWindow);
             
             BudgetViewController controller = loader.getController();
-            controller.setApp(this);
+            controller.initialize(this);
+            budgetControl = controller;
         }
         catch(IOException ioe)
         {
@@ -152,6 +159,9 @@ public class FinancePlanner extends Application
     public BorderPane getRootLayout(){return rootLayout;}
     public TransactionHandler getTransactionHandler(){return tHandler;}
     public BudgetHandler getBudgetHandler(){return bHandler;}
+    public TransactionViewController getTransactionControl(){return transactionControl;}
+    public BudgetViewController getBudgetControl(){return budgetControl;}
+    public DashController getDashControl(){return dashControl;}
     
     public static void main(String[] args)
     {

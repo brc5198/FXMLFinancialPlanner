@@ -36,10 +36,12 @@ public class TransactionViewController
 
     /**
      * Initializes the controller class.
+     * @param app
      */
-    public void initialize()
+    public void initialize(FinancePlanner app)
     {
-        
+        this.app = app;
+        transactionHandler = app.getTransactionHandler();
     }
     
     /*
@@ -56,7 +58,7 @@ public class TransactionViewController
     Handles cancel button
     */
     @FXML
-    public void handleCancelButton()
+    private void handleCancelButton()
     {
         System.out.println("Cancel called");
         app.removeWindows();
@@ -96,11 +98,5 @@ public class TransactionViewController
         if(descriptionInput.getText() == null){complete = false;}
         
         return complete;
-    }
-    
-    public void setApp(FinancePlanner app)
-    {
-        this.app = app;
-    }
-    
+    }   
 }

@@ -29,22 +29,25 @@ public class BudgetViewController
     private FinancePlanner app;
     
     private BudgetHandler budgetHandler;
-
+    
     /**
      * Initializes the controller class.
+     * @param app
      */
-    public void initialize()
+    public void initialize(FinancePlanner app)
     {
-        
+        this.app = app;
+        budgetHandler = app.getBudgetHandler();
     }
     
     /*
     Handles save button
     */
     @FXML
-    public void handleSaveButton()
+    private void handleSaveButton()
     {
-        System.out.println("Save called");
+        requestNewBudget();
+        app.getDashControl().refresh();
         app.removeWindows();
     }
     
@@ -95,10 +98,4 @@ public class BudgetViewController
         
         return complete;
     }
-
-    public void setApp(FinancePlanner app)
-    {
-        this.app = app;
-    }
-    
 }

@@ -8,9 +8,13 @@ package financeplanner.controller;
 import financeplanner.FinancePlanner;
 import financeplanner.model.Budget;
 import financeplanner.model.Transaction;
+import java.util.ArrayList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 
 /**
  * @author Steven Burns
@@ -28,41 +32,37 @@ public class DashController
     @FXML private GridPane display;
     
     private FinancePlanner app;
-    
+    private ArrayList<Budget> budgets;
+    private ArrayList<Transaction> transactions;
+  
     /**
      * Initializes the controller class.
+     * @param app
      */
-    public void initialize()
+    public void initialize(FinancePlanner app)
     {
-        // TODO
-    }    
+        this.app = app;
+        budgets = app.getBudgetHandler().getBudgets();
+        transactions = app.getTransactionHandler().getTransactions();
+        refresh();
+    }
     
     /*
     Handles transaction button
     */
     @FXML
-    private Transaction handleTransactionButton()
+    private void handleTransactionButton()
     {
-        System.out.println("handleTransaction Called");
         app.showTransactionWindow();
-        
-        Transaction newTransaction = null;
-        
-        return newTransaction;
     }
     
     /*
     Handles budget button
     */
     @FXML 
-    private Budget handleBudgetButton()
+    private void handleBudgetButton()
     {
-        System.out.println("handleBudget Called");
         app.showBudgetWindow();
-        
-        Budget newBudget = null;
-        
-        return newBudget;
     }
     
     /*
@@ -71,12 +71,55 @@ public class DashController
     @FXML 
     private void handleHistoryButton()
     {
-        System.out.println("handleHistory Called");
-    }
-
-    public void setApp(FinancePlanner app)
-    {
-        this.app = app;
+        display.getChildren().clear();
     }
     
+    public void refresh()
+    {
+        //Todo
+        wrapBudgets();
+        wrapTransactions();
+    }
+    
+    private void wrapBudgets()
+    {   
+        //Clear the element from the grid
+        //(Retains a node and adds it to remember grid lines)
+        Node node = display.getChildren().get(0);
+        display.getChildren().clear();
+        display.getRowConstraints().clear();
+        display.getChildren().add(0, node);
+        
+        //Create a Row
+        RowConstraints header = new RowConstraints();
+        header.setMinHeight(50);
+        display.getRowConstraints().add(header);
+        //Create and add the header to the row
+        Label category = new Label("Category");
+        Label amount = new Label("Amount");
+        Label progress = new Label("Progress");
+        display.add(category, 0, 0);
+        display.add(amount, 1, 0);
+        display.add(progress, 2, 0);
+        
+        for(int i = 0; i < budgets.size(); i++)
+        {
+            //Create a row
+            RowConstraints row = new RowConstraints();
+            row.setMinHeight(50);
+            display.getRowConstraints().add(row);
+            //Wrap the budget information Nodes
+            Budget budget = budgets.get(i);
+            Label categoryLabel = new Label(budgets.get(i).getName());
+            Label amountLabel = new Label(String.valueOf(budget.getAmount()));
+            //Add the nodes to the grid
+            display.add(categoryLabel, 0, i + 1);
+            display.add(amountLabel, 1, i + 1);
+        }
+    }
+    
+    private void wrapTransactions()
+    {
+        
+    }
 }
