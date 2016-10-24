@@ -10,8 +10,10 @@ import financeplanner.controller.BudgetViewController;
 import financeplanner.controller.DashController;
 import financeplanner.controller.TransactionHandler;
 import financeplanner.controller.TransactionViewController;
+import financeplanner.controller.HistoryController;
 import java.io.IOException;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -42,6 +44,7 @@ public class FinancePlanner extends Application
     DashController dashControl;
     BudgetViewController budgetControl;
     TransactionViewController transactionControl;
+    HistoryController historyControl;
     
     private TransactionHandler tHandler = new TransactionHandler();
     private BudgetHandler bHandler = new BudgetHandler();
@@ -138,6 +141,27 @@ public class FinancePlanner extends Application
             BudgetViewController controller = loader.getController();
             controller.initialize(this);
             budgetControl = controller;
+        }
+        catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+    }
+    
+        /*
+    Loads view for saving budgets and its controller
+    */
+    public void showHistoryWindow()
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(FinancePlanner.class.getResource("view/History.fxml"));
+            AnchorPane historyWindow = (AnchorPane)loader.load();
+            rootLayout.setCenter(historyWindow);
+            
+            HistoryController controller = loader.getController();
+            controller.initialize(this);
+            historyControl = controller;
         }
         catch(IOException ioe)
         {
