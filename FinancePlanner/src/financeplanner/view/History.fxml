@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="507.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="financeplanner.controller.HistoryController">
+   <children>
+      <VBox alignment="CENTER" layoutX="28.0" layoutY="78.0" prefHeight="244.0" prefWidth="452.0">
+         <children>
+            <ScrollPane prefHeight="272.0" prefWidth="452.0">
+               <content>
+                  <GridPane fx:id="display" alignment="TOP_CENTER" gridLinesVisible="true" prefHeight="242.0" prefWidth="450.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="141.0" minWidth="0.0" prefWidth="123.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="370.0" minWidth="10.0" prefWidth="123.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="355.0" minWidth="10.0" prefWidth="348.0" />
+                     </columnConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+      <Button fx:id="okButton" layoutX="220.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleOkButton" prefHeight="41.0" prefWidth="70.0" text="Ok" />
+      <Label layoutX="210.0" layoutY="33.0" text="History">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
