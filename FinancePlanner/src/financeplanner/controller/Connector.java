@@ -89,6 +89,7 @@ public class Connector {
             
            // Transaction t = new Transaction(id, amount, transDate, location, budget_ID);
             
+            System.out.println(id + " " + amount);
             
 //            InventoryItem i1 = new InventoryItem(id, itemName, itemQuantity, productDescription, unitCost, itemPrice);
 //            itemList.add(i1);
