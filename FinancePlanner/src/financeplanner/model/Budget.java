@@ -18,11 +18,11 @@ public class Budget
     private String startTime;
     private String endTime;
     private double amount;
-//    private ArrayList<Transaction> transactions;
+    private ArrayList<Transaction> transactions;
     
     public Budget()
     {
-        ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+        transactions = new ArrayList<Transaction>();
     }
     
     public void setBudgetID(int budget_ID){this.budget_ID = budget_ID;}
@@ -30,12 +30,12 @@ public class Budget
     public void setStartTime(String startTime){this.startTime = startTime;}
     public void setEndTime(String endTime){this.endTime = endTime;}
     public void setAmount(double amount){this.amount = amount;}
-   // public void setTransactions(ArrayList<Transaction> transactions){this.transactions = transactions;}
+    public void setTransactions(ArrayList<Transaction> transactions){this.transactions = transactions;}
     
     public int getID(){return budget_ID;}
     public String getName(){return name;}
     public String getStartTime(){return startTime;}
     public String getEndTime(){return endTime;}
     public double getAmount(){return amount;}
-   // public ArrayList<Transaction> getTransactions(){return transactions;}
+    public ArrayList<Transaction> getTransactions(){return transactions;}
 }

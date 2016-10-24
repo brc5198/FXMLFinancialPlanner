@@ -27,9 +27,11 @@ final public class BudgetHandler
         budgets = new ArrayList<Budget>();
     }
     
-    public Budget requestNewBudget(String name, String startTime, String endTime, double amount)
+    public Budget requestNewBudget(int id, String name, String startTime, String endTime, double amount)
     {
         Budget newBudget = new Budget();
+        
+        newBudget.setBudgetID(id);
         
         if(name == null)
         {
