@@ -71,7 +71,7 @@ public class DashController
     @FXML 
     private void handleHistoryButton()
     {
-        display.getChildren().clear();
+        app.showHistoryWindow();
     }
     
     public void refresh()

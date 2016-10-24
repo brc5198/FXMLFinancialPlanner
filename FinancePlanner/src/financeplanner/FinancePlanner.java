@@ -157,7 +157,7 @@ public class FinancePlanner extends Application
         {
             FXMLLoader loader = new FXMLLoader(FinancePlanner.class.getResource("view/History.fxml"));
             AnchorPane historyWindow = (AnchorPane)loader.load();
-            rootLayout.setCenter(historyWindow);
+            rootLayout.setLeft(historyWindow);
             
             HistoryController controller = loader.getController();
             controller.initialize(this);
