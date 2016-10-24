@@ -71,5 +71,30 @@ public class Connector {
         return itemList;
     }
 
+    
+      public static ArrayList<Transaction> populateTransactionArrayList() throws SQLException{
+        connecting();
+//      Statement stmt = connect.createStatement();    //creates a statement using a specific connection
+        ResultSet rs = stmt.executeQuery("SELECT * from BUDGET"); //returns a ResultSet based on the statement query
+
+        ArrayList<Transaction> transList = new ArrayList<Transaction>();
+
+        //Reads column by column extracting data
+        while(rs.next()){
+            int id = rs.getInt("Transactionn_ID"); //ResultSet gets the string from the 'Customer_ID' column from the table
+            Double amount = rs.getDouble("amount"); //Same thing...different column
+            String transDate = rs.getString("transaction_date");
+            String location = rs.getString("location");
+            int budget_ID = rs.getInt("Budget_ID");
+            
+           // Transaction t = new Transaction(id, amount, transDate, location, budget_ID);
+            
+            
+//            InventoryItem i1 = new InventoryItem(id, itemName, itemQuantity, productDescription, unitCost, itemPrice);
+//            itemList.add(i1);
+        }
+        conn.close();
+        return transList;
+    }
    
 }
