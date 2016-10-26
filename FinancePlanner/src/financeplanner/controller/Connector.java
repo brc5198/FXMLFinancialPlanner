@@ -75,7 +75,7 @@ public class Connector {
       public ArrayList<Transaction> populateTransactionArrayList() throws SQLException{
         connecting();
 //      Statement stmt = connect.createStatement();    //creates a statement using a specific connection
-        ResultSet rs = stmt.executeQuery("SELECT * from BUDGET"); //returns a ResultSet based on the statement query
+        ResultSet rs = stmt.executeQuery("SELECT * from Transaction"); //returns a ResultSet based on the statement query
 
         ArrayList<Transaction> transList = new ArrayList<Transaction>();
 
