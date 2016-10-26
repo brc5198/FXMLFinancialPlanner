@@ -48,7 +48,7 @@ public class Connector {
     public ArrayList<Budget> populateBudgetArrayList() throws SQLException{
         connecting();
 //        Statement stmt = connect.createStatement();    //creates a statement using a specific connection
-        ResultSet rs = stmt.executeQuery("SELECT * from BUDGET"); //returns a ResultSet based on the statement query
+        ResultSet rs = stmt.executeQuery("SELECT * from BUDGET WHERE User_ID = 1"); //returns a ResultSet based on the statement query
 
         ArrayList<Budget> itemList = new ArrayList<Budget>();
 
@@ -58,7 +58,7 @@ public class Connector {
             String budgetName = rs.getString("BudgetName"); //Same thing...different column
             String startTime = rs.getString("StartTime");
             String endTime = rs.getString("EndTime");
-            double amount = rs.getDouble("Amount");
+            double amount = rs.getDouble("amount");
             
             BudgetHandler bh = new BudgetHandler();
             Budget b1 = bh.createNewBudget(budgetName, startTime, endTime, amount);
