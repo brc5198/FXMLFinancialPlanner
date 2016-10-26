@@ -72,12 +72,28 @@ public class HistoryController {
         header.setMinHeight(50);
         display.getRowConstraints().add(header);
         //Create and add the header to the row
-        Label category = new Label("Location");
+        Label location = new Label("Location");
         Label amount = new Label("Amount");
-        Label progress = new Label("Budget");
-        display.add(category, 0, 0);
+        Label time = new Label("Time");
+        display.add(location, 0, 0);
         display.add(amount, 1, 0);
-        display.add(progress, 2, 0);
+        display.add(time, 2, 0);
+        
+        for(int i = 0; i < transactions.size(); i++)
+        {
+            //Create a row
+            RowConstraints row = new RowConstraints();
+            row.setMinHeight(50);
+            display.getRowConstraints().add(row);
+            //Wrap the budget information Nodes
+            Label locationLabel = new Label(transactions.get(i).getLocation());
+            Label amountLabel = new Label(String.valueOf(transactions.get(i).getAmount()));
+            Label timeLabel = new Label(transactions.get(i).getTimeStamp());
+            //Add the nodes to the grid
+            display.add(locationLabel, 0, i + 1);
+            display.add(amountLabel, 1, i + 1);
+            display.add(timeLabel, 2, i + 1);
+        }
         
     }
     
