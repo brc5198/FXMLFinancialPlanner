@@ -29,11 +29,17 @@ final public class BudgetHandler
     
     public BudgetHandler()
     {
+        budgets = new ArrayList();
+        
+        /**
         try {
             budgets = theConnector.populateBudgetArrayList();
+            
         } catch (SQLException ex) {
             Logger.getLogger(BudgetHandler.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+        */
     }
     
     public Budget requestNewBudget(int id, String name, String startTime, String endTime, double amount)
