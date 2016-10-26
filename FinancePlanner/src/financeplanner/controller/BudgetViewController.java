@@ -20,7 +20,6 @@ public class BudgetViewController
 
     @FXML TextField categoryInput;
     @FXML TextField amountInput;
-    @FXML TextField locationInput;
     @FXML DatePicker startInput;
     @FXML DatePicker endInput;
     @FXML Button saveButton;
@@ -91,7 +90,6 @@ public class BudgetViewController
         boolean complete = true;
         
         if(categoryInput.getText() == null){complete = false;}
-        if(locationInput.getText() == null){complete = false;}
         if(amountInput.getText() == null){complete = false;}
         if(startInput.getValue().toString() == null){complete = false;}
         if(endInput.getValue().toString() == null){complete = false;}
