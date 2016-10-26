@@ -29,11 +29,16 @@ final public class TransactionHandler
     
     public TransactionHandler()
     {
+        transactions = new ArrayList();
+        
+        /**
         try {
-            transactions = theConnector.populateTransactionArrayList();
+            //transactions = theConnector.populateTransactionArrayList();
         } catch (SQLException ex) {
             Logger.getLogger(TransactionHandler.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+        */
     }
     
     public Transaction requestNewTransaction(double amount, String timeStamp, String location)
