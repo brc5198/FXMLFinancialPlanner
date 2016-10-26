@@ -18,14 +18,14 @@ import java.util.ArrayList;
  * @author sab5964
  */
 public class Connector {
-          
-   
+    
+    
     static  String host = "jdbc:derby://localhost:8889/BUDGETING";
     static  String uName = "Budgeting";
     static  String uPassword = "v5h7MWnEFBf7aLna";
     static Connection conn = null;
     static Statement stmt = null;
-  
+
 
   
 
