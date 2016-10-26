@@ -98,30 +98,53 @@ public class Connector {
         return transList;
     }
       
-      public static void addNewTransaction(double amount, String transaction_date, String location, int Budget_ID){
-            connecting();
-            try{
+    public static void addNewTransaction(double amount, String transaction_date, String location, int Budget_ID){
+        connecting();
+        try{
           
-                String query = "INSERT into Transaction (amount, transaction_date, location, Budget_ID)" + "values (?, ?, ?, ?)";
+            String query = "INSERT into Transaction (amount, transaction_date, location, Budget_ID)" + "values (?, ?, ?, ?)";
                 
-                //print out for verification
-                System.out.println(query);
+            //print out for verification
+            System.out.println(query);
                 
                 
-                PreparedStatement ps = conn.prepareStatement(query);
-                ps.setDouble(1, amount);
-                ps.setString(2, transaction_date);
-                ps.setString(3, location);
-                ps.setInt(4, Budget_ID);
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setDouble(1, amount);
+            ps.setString(2, transaction_date);
+            ps.setString(3, location);
+            ps.setInt(4, Budget_ID);
                 
-                //run prepared statement
-                ps.execute();
-                
-                conn.close();
+            //run prepared statement
+            ps.execute();
+            
+            conn.close();
           
-            } catch (Exception e1){
-                System.err.println(e1.getMessage());
-            }
+        } catch (Exception e1){
+            System.err.println(e1.getMessage());
         }
+    }
+      
+    public static void addNewBudget(int Budget_ID, String Name,String StartTime, String EndTime , double amount){
+        connecting();
+            
+        try {
+            String query = "INSERT into Budget (Budget_ID,Name,StartTime, EndTime, amount, User_ID)" + "values (?,?,?,?, ?)";
+            System.out.println(query);
+        
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, Budget_ID);
+            ps.setString(2, Name);
+            ps.setString(3,StartTime);
+            ps.setString(4,EndTime);
+            ps.setDouble(5,amount);
+            ps.setInt(6,1);
+                
+            ps.execute();
+            conn.close();
+
+        } catch (SQLException e2) {
+            System.err.println(e2.getMessage());
+        }
+    }   
    
 }
