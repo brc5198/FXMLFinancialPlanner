@@ -20,9 +20,9 @@ import java.util.ArrayList;
 public class Connector {
     
     
-    static  String host = "jdbc:derby://localhost:8889/BUDGETING";
-    static  String uName = "Budgeting";
-    static  String uPassword = "v5h7MWnEFBf7aLna";
+    static  String host = "jdbc:derby://updb1.up.ist.psu.edu/bvm5284";
+    static  String uName = "bvm5284";
+    static  String uPassword = "ENAJrPDT";
     static Connection conn = null;
     static Statement stmt = null;
 
