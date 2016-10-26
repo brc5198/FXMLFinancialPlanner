@@ -6,9 +6,12 @@
 package financeplanner.controller;
 
 import financeplanner.model.Transaction;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Steven Burns
@@ -22,9 +25,15 @@ final public class TransactionHandler
 {
     private static ArrayList<Transaction> transactions;
     
+    private Connector theConnector = new Connector();
+    
     public TransactionHandler()
     {
-        transactions = new ArrayList<Transaction>();
+        try {
+            transactions = theConnector.populateTransactionArrayList();
+        } catch (SQLException ex) {
+            Logger.getLogger(TransactionHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public Transaction requestNewTransaction(double amount, String timeStamp, String location)

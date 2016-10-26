@@ -6,9 +6,12 @@
 package financeplanner.controller;
 
 import financeplanner.model.Budget;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Steven Burns
@@ -22,9 +25,15 @@ final public class BudgetHandler
 {
     private static ArrayList<Budget> budgets;
     
+    private Connector theConnector = new Connector();
+    
     public BudgetHandler()
     {
-        budgets = new ArrayList<Budget>();
+        try {
+            budgets = theConnector.populateBudgetArrayList();
+        } catch (SQLException ex) {
+            Logger.getLogger(BudgetHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public Budget requestNewBudget(int id, String name, String startTime, String endTime, double amount)

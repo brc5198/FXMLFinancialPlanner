@@ -45,7 +45,7 @@ public class Connector {
     }
 
     
-    public static ArrayList<Budget> populateBudgetArrayList() throws SQLException{
+    public ArrayList<Budget> populateBudgetArrayList() throws SQLException{
         connecting();
 //        Statement stmt = connect.createStatement();    //creates a statement using a specific connection
         ResultSet rs = stmt.executeQuery("SELECT * from BUDGET"); //returns a ResultSet based on the statement query
@@ -72,7 +72,7 @@ public class Connector {
     }
 
     
-      public static ArrayList<Transaction> populateTransactionArrayList() throws SQLException{
+      public ArrayList<Transaction> populateTransactionArrayList() throws SQLException{
         connecting();
 //      Statement stmt = connect.createStatement();    //creates a statement using a specific connection
         ResultSet rs = stmt.executeQuery("SELECT * from BUDGET"); //returns a ResultSet based on the statement query
