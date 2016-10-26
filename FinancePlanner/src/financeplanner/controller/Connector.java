@@ -89,7 +89,7 @@ public class Connector {
             
            // Transaction t = new Transaction(id, amount, transDate, location, budget_ID);
             
-            System.out.println(id + " " + amount);
+           // System.out.println(id + " " + amount);
             
 //            InventoryItem i1 = new InventoryItem(id, itemName, itemQuantity, productDescription, unitCost, itemPrice);
 //            itemList.add(i1);
@@ -97,5 +97,31 @@ public class Connector {
         conn.close();
         return transList;
     }
+      
+      public static void addNewTransaction(double amount, String transaction_date, String location, int Budget_ID){
+            connecting();
+            try{
+          
+                String query = "INSERT into Transaction (amount, transaction_date, location, Budget_ID)" + "values (?, ?, ?, ?)";
+                
+                //print out for verification
+                System.out.println(query);
+                
+                
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setDouble(1, amount);
+                ps.setString(2, transaction_date);
+                ps.setString(3, location);
+                ps.setInt(4, Budget_ID);
+                
+                //run prepared statement
+                ps.execute();
+                
+                conn.close();
+          
+            } catch (Exception e1){
+                System.err.println(e1.getMessage());
+            }
+        }
    
 }
