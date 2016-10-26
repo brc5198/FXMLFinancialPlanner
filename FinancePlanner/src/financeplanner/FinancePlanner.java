@@ -36,10 +36,10 @@ public class FinancePlanner extends Application
     private Stage primaryStage;
     private BorderPane rootLayout;
     
-    DashController dashControl;
-    BudgetViewController budgetControl;
-    TransactionViewController transactionControl;
-    HistoryController historyControl;
+    private DashController dashControl;
+    private BudgetViewController budgetControl;
+    private TransactionViewController transactionControl;
+    private HistoryController historyControl;
     
     private TransactionHandler tHandler = new TransactionHandler();
     private BudgetHandler bHandler = new BudgetHandler();

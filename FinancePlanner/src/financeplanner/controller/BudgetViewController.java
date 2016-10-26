@@ -79,6 +79,8 @@ public class BudgetViewController
                 amount = 0;
             }
             
+            newBudget = app.getBudgetHandler().createNewBudget(categoryInput.getText(), startInput.getValue().toString(), endInput.getValue().toString(), amount);
+            
             //newBudget = app.getBudgetHandler().requestNewBudget(categoryInput.getText(), startInput.getValue().toString(), endInput.getValue().toString(), amount);
         }
         

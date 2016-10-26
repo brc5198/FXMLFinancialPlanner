@@ -42,11 +42,19 @@ final public class BudgetHandler
         */
     }
     
-    public Budget requestNewBudget(int id, String name, String startTime, String endTime, double amount)
+    /**
+     * Ceates a new budget and automatically adds it to the Budgets ArrayList
+     * @param name
+     * @param startTime
+     * @param endTime
+     * @param amount
+     * @return 
+     */
+    public Budget createNewBudget(String name, String startTime, String endTime, double amount)
     {
         Budget newBudget = new Budget();
         
-        newBudget.setBudgetID(id);
+        newBudget.setBudgetID(-1);
         
         if(name == null)
         {

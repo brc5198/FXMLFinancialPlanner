@@ -61,7 +61,7 @@ public class Connector {
             double amount = rs.getDouble("Amount");
             
             BudgetHandler bh = new BudgetHandler();
-            Budget b1 = bh.requestNewBudget(id, budgetName, startTime, endTime, amount);
+            Budget b1 = bh.createNewBudget(budgetName, startTime, endTime, amount);
             
 
 //            InventoryItem i1 = new InventoryItem(id, itemName, itemQuantity, productDescription, unitCost, itemPrice);
