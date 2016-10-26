@@ -5,12 +5,7 @@
  */
 package financeplanner;
 
-import financeplanner.controller.BudgetHandler;
-import financeplanner.controller.BudgetViewController;
-import financeplanner.controller.DashController;
-import financeplanner.controller.TransactionHandler;
-import financeplanner.controller.TransactionViewController;
-import financeplanner.controller.HistoryController;
+import financeplanner.controller.*;
 import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -157,7 +152,7 @@ public class FinancePlanner extends Application
         {
             FXMLLoader loader = new FXMLLoader(FinancePlanner.class.getResource("view/History.fxml"));
             AnchorPane historyWindow = (AnchorPane)loader.load();
-            rootLayout.setCenter(historyWindow);
+            rootLayout.setLeft(historyWindow);
             
             HistoryController controller = loader.getController();
             controller.initialize(this);
