@@ -25,11 +25,23 @@ final public class TransactionHandler
 {
     private static ArrayList<Transaction> transactions;
     
-    private Connector theConnector = new Connector();
+    //private Connector theConnector = new Connector();
     
     public TransactionHandler()
     {
         transactions = new ArrayList();
+       
+        /**
+        Something like this would be how to start this
+
+        * try{
+            System.out.println("TRY");
+            DatabaseConnector db = new DatabaseConnector();
+            db.addNewTransaction();
+        } catch(SQLException sql1){
+            sql1.printStackTrace();
+        }
+        **/
         
         /**
         try {

@@ -25,11 +25,23 @@ final public class BudgetHandler
 {
     private static ArrayList<Budget> budgets;
     
-    private Connector theConnector = new Connector();
+   // private Connector theConnector = new Connector();
     
     public BudgetHandler()
     {
         budgets = new ArrayList();
+        
+        /**
+        Something like this would be how to start this
+
+        * try{
+            System.out.println("TRY");
+            DatabaseConnector db = new DatabaseConnector();
+            db.addNewBudget();
+        } catch(SQLException sql1){
+            sql1.printStackTrace();
+        }
+        **/
         
         /**
         try {
