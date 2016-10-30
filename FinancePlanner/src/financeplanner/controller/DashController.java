@@ -10,11 +10,14 @@ import financeplanner.model.Budget;
 import financeplanner.model.Transaction;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 /**
  * @author Steven Burns
@@ -98,6 +101,7 @@ public class DashController
         Label category = new Label("Category");
         Label amount = new Label("Amount");
         Label progress = new Label("Progress");
+        progress.setPadding(new Insets(0, 100, 0, 150));                        //TODO: find scalable method for centering label
         display.add(category, 0, 0);
         display.add(amount, 1, 0);
         display.add(progress, 2, 0);
@@ -111,10 +115,18 @@ public class DashController
             //Wrap the budget information Nodes
             Budget budget = budgets.get(i);
             Label categoryLabel = new Label(budgets.get(i).getName());
-            Label amountLabel = new Label(String.valueOf(budget.getAmount()));
+            Label amountLabel = new Label(String.valueOf(BudgetHandler.calculateBudgetRemainder(budget)));
+            //Label amountLabel = new Label(String.valueOf(budget.getAmount()));
+            
+            Rectangle progressBar = new Rectangle();
+            double rectangleWidth = display.getColumnConstraints().get(2).getPrefWidth() * BudgetHandler.calculateBudgetRemainderPercent(budgets.get(i));
+              progressBar.setFill(Color.GREEN);
+              progressBar.setWidth(rectangleWidth);
+              progressBar.setHeight(50);
             //Add the nodes to the grid
             display.add(categoryLabel, 0, i + 1);
             display.add(amountLabel, 1, i + 1);
+            display.add(progressBar, 2, i + 1);
         }
     }
     

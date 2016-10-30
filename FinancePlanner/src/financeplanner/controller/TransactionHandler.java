@@ -53,7 +53,7 @@ final public class TransactionHandler
         */
     }
     
-    public Transaction requestNewTransaction(double amount, String timeStamp, String location)
+    public Transaction createNewTransaction(double amount, String timeStamp, String location)
     {
         Transaction newTransaction = new Transaction();
         
