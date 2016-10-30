@@ -51,6 +51,7 @@ public class TransactionViewController
     private void handleSaveButton()
     {
         System.out.println("Save called");
+        requestNewTransaction();
         app.removeWindows();
     }
     
