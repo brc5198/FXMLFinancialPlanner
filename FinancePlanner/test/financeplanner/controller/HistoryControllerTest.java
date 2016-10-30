@@ -14,8 +14,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
- * @author bradcaviston
+ * @author Steven Burns
+ * @author Brad Caviston
+ * @author Ardjen Lane
+ * @author Briley Marchetti
  */
 public class HistoryControllerTest {
     
