@@ -37,6 +37,10 @@ public class DashController
     private FinancePlanner app;
     private ArrayList<Budget> budgets;
     private ArrayList<Transaction> transactions;
+    
+    //Settings
+    private double warningThreshold = .5;
+    private double dangerThreshold = .1;
   
     /**
      * Initializes the controller class.
@@ -112,17 +116,22 @@ public class DashController
             RowConstraints row = new RowConstraints();
             row.setMinHeight(50);
             display.getRowConstraints().add(row);
-            //Wrap the budget information Nodes
+            //Labels
             Budget budget = budgets.get(i);
             Label categoryLabel = new Label(budgets.get(i).getName());
             Label amountLabel = new Label(String.valueOf(BudgetHandler.calculateBudgetRemainder(budget)));
             //Label amountLabel = new Label(String.valueOf(budget.getAmount()));
             
+            //Progress Bar
             Rectangle progressBar = new Rectangle();
-            double rectangleWidth = display.getColumnConstraints().get(2).getPrefWidth() * BudgetHandler.calculateBudgetRemainderPercent(budgets.get(i));
-              progressBar.setFill(Color.GREEN);
+            double remainder = BudgetHandler.calculateBudgetRemainderPercent(budgets.get(i));
+            double rectangleWidth = display.getColumnConstraints().get(2).getPrefWidth() * remainder;
+              if(remainder <= dangerThreshold){progressBar.setFill(Color.RED);}
+              else if(remainder <= warningThreshold){progressBar.setFill(Color.YELLOW);}
+              else{progressBar.setFill(Color.GREEN);}
               progressBar.setWidth(rectangleWidth);
-              progressBar.setHeight(50);
+              progressBar.setHeight(46);
+              
             //Add the nodes to the grid
             display.add(categoryLabel, 0, i + 1);
             display.add(amountLabel, 1, i + 1);
