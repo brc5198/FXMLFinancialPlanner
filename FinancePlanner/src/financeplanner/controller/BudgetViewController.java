@@ -78,12 +78,19 @@ public class BudgetViewController
             {
                 amount = 0;
             }
-            
-            newBudget = app.getBudgetHandler().createNewBudget(categoryInput.getText(), startInput.getValue().toString(), endInput.getValue().toString(), amount);
-            
-            //newBudget = app.getBudgetHandler().requestNewBudget(categoryInput.getText(), startInput.getValue().toString(), endInput.getValue().toString(), amount);
+
+            newBudget = app.getBudgetHandler().createNewBudget(categoryInput.getText(), startInput.getValue().toString(), endInput.getValue().toString(), amount);    
+        } 
+        else
+        {
+            System.out.println("One or more fields are missing");
+            /*
+            TODO:
+            Notify user of incorrect input
+            */         
         }
         
+         
         return newBudget;
     }
     

@@ -25,11 +25,32 @@ final public class BudgetHandler
 {
     private static ArrayList<Budget> budgets;
     
-    private Connector theConnector = new Connector();
+    private Connector theConnector;
     
     public BudgetHandler()
     {
         budgets = new ArrayList();
+        
+        try
+        {
+            theConnector = new Connector();
+        }
+        catch(SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
+        /**
+        Something like this would be how to start this
+
+        * try{
+            System.out.println("TRY");
+            DatabaseConnector db = new DatabaseConnector();
+            db.addNewBudget();
+        } catch(SQLException sql1){
+            sql1.printStackTrace();
+        }
+        **/
         
         /**
         try {
@@ -91,7 +112,7 @@ final public class BudgetHandler
     /*
     Given a list of budgets, calculates the sum of all the budget limits
     */
-    public double calculatBudgetsSum()
+    public double calculateBudgetsSum()
     {
         double sum = 0.00;
         
@@ -101,6 +122,33 @@ final public class BudgetHandler
         }
         
         return sum;
+    }
+    
+    public static double calculateBudgetRemainder(Budget budget)
+    {
+        double remainder = budget.getAmount();
+        
+        for(int i = 0; i < budget.getTransactions().size(); i++)
+        {
+            remainder = remainder - budget.getTransactions().get(i).getAmount();
+        }
+        
+        return remainder;
+    }
+    
+    public static double calculateBudgetRemainderPercent(Budget budget)
+    {
+        double percent = 0;
+        double amount = budget.getAmount();
+        double remainder = calculateBudgetRemainder(budget);
+        percent = (remainder / amount);
+        
+        if(percent < 0)
+        {
+            percent = 0;
+        }
+        
+        return percent;
     }
     
     /*
