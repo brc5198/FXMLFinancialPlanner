@@ -1,0 +1,24 @@
+package financeplanner.model;
+
+/**
+ *
+ * @author Ardjen
+ */
+public class User 
+{
+    private String firstName;
+    private String lastName;
+    
+    public User()
+    {
+        
+    }
+    
+    //Setters
+    public void setFirstName(String firstName){this.firstName = firstName;}
+    public void setLastName(String lastName){this.lastName = lastName;}
+    
+    //Getters
+    public String getFirstName(){return firstName;}
+    public String getLastName(){return lastName;}
+}
