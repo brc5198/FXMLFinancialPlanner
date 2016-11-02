@@ -6,6 +6,7 @@
 package financeplanner;
 
 import financeplanner.controller.*;
+import financeplanner.model.User;
 import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -36,10 +37,12 @@ public class FinancePlanner extends Application
     private Stage primaryStage;
     private BorderPane rootLayout;
     
+    private User user;
     private DashController dashControl;
     private BudgetViewController budgetControl;
     private TransactionViewController transactionControl;
     private HistoryController historyControl;
+    private LoginViewController loginControl;
     
     private TransactionHandler tHandler = new TransactionHandler();
     private BudgetHandler bHandler = new BudgetHandler();
@@ -77,7 +80,28 @@ public class FinancePlanner extends Application
             ioe.printStackTrace();
         }
         
-        showDashWindow();
+        showLoginWindow();
+    }
+    
+    /*
+    Loads the login view and its controller
+    */
+    public void showLoginWindow()
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(FinancePlanner.class.getResource("view/LoginView.fxml"));
+            AnchorPane loginWindow = (AnchorPane)loader.load();
+            rootLayout.setCenter(loginWindow);
+            
+            LoginViewController controller = loader.getController();
+            controller.initialize(this);
+            loginControl = controller;
+        }
+        catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
     }
     
     /*
@@ -87,6 +111,7 @@ public class FinancePlanner extends Application
     {
         try
         {
+            removeWindows();
             FXMLLoader loader = new FXMLLoader(FinancePlanner.class.getResource("view/Dash.fxml"));
             AnchorPane dashWindow = (AnchorPane)loader.load();
             rootLayout.setCenter(dashWindow);
@@ -175,6 +200,9 @@ public class FinancePlanner extends Application
         rootLayout.setBottom(null);
     }
     
+    public void setUser(User user){this.user = user;}
+    
+    public User getUser(){return user;}
     public BorderPane getRootLayout(){return rootLayout;}
     public TransactionHandler getTransactionHandler(){return tHandler;}
     public BudgetHandler getBudgetHandler(){return bHandler;}
