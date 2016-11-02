@@ -40,7 +40,7 @@ final public class BudgetHandler
             sqle.printStackTrace();
         }
         
-        budgets = theConnector.populateBudgetArrayList();
+        budgets.addAll(theConnector.populateBudgetArrayList());
         
         /**
         Something like this would be how to start this
@@ -66,7 +66,7 @@ final public class BudgetHandler
     }
     
     /**
-     * Ceates a new budget and automatically adds it to the Budgets ArrayList
+     * Creates a new budget and automatically adds it to the Budgets ArrayList
      * @param name
      * @param startTime
      * @param endTime
@@ -77,7 +77,7 @@ final public class BudgetHandler
     {
         Budget newBudget = new Budget();
         
-        newBudget.setBudgetID(-1);
+        newBudget.setBudgetID(budgets.size() + 1);
         
         if(name == null)
         {
