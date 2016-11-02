@@ -27,7 +27,7 @@ final public class BudgetHandler
     
     private Connector theConnector;
     
-    public BudgetHandler()
+    public BudgetHandler() throws SQLException
     {
         budgets = new ArrayList();
         
@@ -39,6 +39,8 @@ final public class BudgetHandler
         {
             sqle.printStackTrace();
         }
+        
+       // budgets = theConnector.populateBudgetArrayList();
         
         /**
         Something like this would be how to start this
@@ -71,7 +73,7 @@ final public class BudgetHandler
      * @param amount
      * @return 
      */
-    public Budget createNewBudget(String name, String startTime, String endTime, double amount)
+    public Budget createNewBudget(String name, String startTime, String endTime, double amount) throws SQLException
     {
         Budget newBudget = new Budget();
         
@@ -107,6 +109,7 @@ final public class BudgetHandler
         newBudget.setAmount(amount);
         
         budgets.add(newBudget);
+        //theConnector.addNewBudget(newBudget.getID(), newBudget.getName(), newBudget.getStartTime(), newBudget.getEndTime(), newBudget.getAmount());
         return newBudget;
     }
     /*

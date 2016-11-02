@@ -7,6 +7,7 @@ package financeplanner.controller;
 
 import financeplanner.FinancePlanner;
 import financeplanner.model.Transaction;
+import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -54,7 +55,7 @@ public class TransactionViewController
     Handles save button
     */
     @FXML
-    private void handleSaveButton()
+    private void handleSaveButton() throws SQLException
     {
         System.out.println("Save called");
         requestNewTransaction();
@@ -75,7 +76,7 @@ public class TransactionViewController
     /*
     From TransactionHandler, creates new transaction
     */
-    public Transaction requestNewTransaction()
+    public Transaction requestNewTransaction() throws SQLException
     {
         Transaction newTransaction = null;
         double amount = 0;
