@@ -45,7 +45,7 @@ final public class BudgetHandler
 
         * try{
             System.out.println("TRY");
-            DatabaseConnector db = new DatabaseConnector();
+            Connector db = new Connector();
             db.addNewBudget();
         } catch(SQLException sql1){
             sql1.printStackTrace();

@@ -8,6 +8,7 @@ package financeplanner.controller;
 
 import financeplanner.model.Transaction;
 import financeplanner.model.Budget;
+import financeplanner.model.User;
 
 import java.sql.*;
 import java.util.logging.Level;
@@ -77,17 +78,17 @@ public class Connector {
 //    }
 
     
-    public ArrayList<Budget> populateBudgetArrayList() throws SQLException{
+    public ArrayList<Budget> populateBudgetArrayList(int user_ID) throws SQLException{
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();    //creates a statement using a specific connection
-        ResultSet rs = stmt.executeQuery("SELECT * from BUDGET WHERE User_ID = 1"); //returns a ResultSet based on the statement query
+        ResultSet rs = stmt.executeQuery("SELECT B.Budget_ID, B.name, B.StartTime, B.EndTime, B.amount FROM BUDGET AS B WHERE User_ID = " + user_ID + ";"); //returns a ResultSet based on the statement query
 
-        ArrayList<Budget> itemList = new ArrayList<Budget>();
+        ArrayList<Budget> budgetList = new ArrayList<Budget>();
 
         //Reads column by column extracting data
         while(rs.next()){
             int id = rs.getInt("Budget_ID"); //ResultSet gets the string from the 'Customer_ID' column from the table
-            String budgetName = rs.getString("BudgetName"); //Same thing...different column
+            String budgetName = rs.getString("name"); //Same thing...different column
             String startTime = rs.getString("StartTime");
             String endTime = rs.getString("EndTime");
             double amount = rs.getDouble("amount");
@@ -95,19 +96,19 @@ public class Connector {
             BudgetHandler bh = new BudgetHandler();
             Budget b1 = bh.createNewBudget(budgetName, startTime, endTime, amount);
             
-
+            
 //            InventoryItem i1 = new InventoryItem(id, itemName, itemQuantity, productDescription, unitCost, itemPrice);
 //            itemList.add(i1);
         }
         conn.close();
-        return itemList;
+        return budgetList;
     }
 
     
-      public ArrayList<Transaction> populateTransactionArrayList() throws SQLException{
+      public ArrayList<Transaction> populateTransactionArrayList(int budgetID) throws SQLException{
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();    //creates a statement using a specific connection
-        ResultSet rs = stmt.executeQuery("SELECT * from Transaction"); //returns a ResultSet based on the statement query
+        ResultSet rs = stmt.executeQuery("SELECT * from Transaction WHERE Budget_ID = " + budgetID + ";"); //returns a ResultSet based on the statement query
 
         ArrayList<Transaction> transList = new ArrayList<Transaction>();
 
@@ -123,14 +124,40 @@ public class Connector {
             
            // System.out.println(id + " " + amount);
             
-//            InventoryItem i1 = new InventoryItem(id, itemName, itemQuantity, productDescription, unitCost, itemPrice);
-//            itemList.add(i1);
+
         }
         conn.close();
         return transList;
     }
       
-    public static void addNewTransaction(double amount, String transaction_date, String location, int Budget_ID) throws SQLException{
+      
+    public ArrayList<User> populateUserArrayList() throws SQLException{
+        Connection conn = ConnectionToMySql();
+        Statement stmt = conn.createStatement();    //creates a statement using a specific connection
+        ResultSet rs = stmt.executeQuery("SELECT * from User"); //returns a ResultSet based on the statement query
+
+        ArrayList<User> userList = new ArrayList<User>();
+
+        //Reads column by column extracting data
+        while(rs.next()){
+            int id = rs.getInt("User_ID"); //ResultSet gets the string from the 'Customer_ID' column from the table
+            String firstName = rs.getString("FirstName"); //Same thing...different column
+            String lastName = rs.getString("LastName");
+
+            
+           // Transaction t = new Transaction(id, amount, transDate, location, budget_ID);
+            
+           // System.out.println(id + " " + amount);
+            
+//            InventoryItem i1 = new InventoryItem(id, itemName, itemQuantity, productDescription, unitCost, itemPrice);
+//            itemList.add(i1);
+        }
+        conn.close();
+        return userList;
+    }
+      
+      
+    public static void addNewTransaction(Transaction t1) throws SQLException{
 
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();
@@ -142,10 +169,10 @@ public class Connector {
                 
             
         PreparedStatement ps = conn.prepareStatement(query);
-        ps.setDouble(1, amount);
-        ps.setString(2, transaction_date);
-        ps.setString(3, location);
-        ps.setInt(4, Budget_ID);
+        ps.setDouble(1, t1.getAmount());
+        ps.setString(2, t1.getTimeStamp());
+        ps.setString(3, t1.getLocation());
+        ps.setInt(4, t1.getBudgetID());
                 
         //run prepared statement
         ps.execute();
@@ -154,21 +181,37 @@ public class Connector {
      
     }
       
-    public static void addNewBudget(int Budget_ID, String Name,String StartTime, String EndTime , double amount) throws SQLException{
+    public static void addNewBudget(Budget b1) throws SQLException{
 
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();
             
-        String query = "INSERT into Budget (Budget_ID,Name,StartTime, EndTime, amount, User_ID)" + "values (?,?,?,?, ?)";
+        String query = "INSERT into Budget (Name,StartTime, EndTime, amount, User_ID)" + "values (?,?,?, ?)";
         System.out.println(query);
         
         PreparedStatement ps = conn.prepareStatement(query);
-        ps.setInt(1, Budget_ID);
-        ps.setString(2, Name);
-        ps.setString(3,StartTime);
-        ps.setString(4,EndTime);
-        ps.setDouble(5,amount);
-        ps.setInt(6,1);
+        ps.setString(1, b1.getName());
+        ps.setString(2, b1.getStartTime());
+        ps.setString(3, b1.getEndTime());
+        ps.setDouble(4, b1.getAmount());
+        ps.setInt(5,1);
+                
+        ps.execute();
+        conn.close();
+
+    }   
+    
+    public static void addNewUser(User u1) throws SQLException{
+
+        Connection conn = ConnectionToMySql();
+        Statement stmt = conn.createStatement();
+            
+        String query = "INSERT into USER (FirstName, LastName)" + "values (?, ?)";
+        System.out.println(query);
+        
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, u1.getFirstName());
+        ps.setString(2, u1.getLastName());
                 
         ps.execute();
         conn.close();

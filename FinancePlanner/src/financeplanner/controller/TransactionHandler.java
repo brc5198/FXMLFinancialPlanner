@@ -36,7 +36,7 @@ final public class TransactionHandler
 
         * try{
             System.out.println("TRY");
-            DatabaseConnector db = new DatabaseConnector();
+            Connector db = new Connector();
             db.addNewTransaction();
         } catch(SQLException sql1){
             sql1.printStackTrace();
