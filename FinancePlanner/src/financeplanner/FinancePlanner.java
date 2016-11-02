@@ -6,6 +6,7 @@
 package financeplanner;
 
 import financeplanner.controller.*;
+import financeplanner.model.User;
 import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -36,6 +37,7 @@ public class FinancePlanner extends Application
     private Stage primaryStage;
     private BorderPane rootLayout;
     
+    private User user;
     private DashController dashControl;
     private BudgetViewController budgetControl;
     private TransactionViewController transactionControl;
@@ -78,7 +80,7 @@ public class FinancePlanner extends Application
             ioe.printStackTrace();
         }
         
-        showDashWindow();
+        showLoginWindow();
     }
     
     /*
@@ -109,6 +111,7 @@ public class FinancePlanner extends Application
     {
         try
         {
+            removeWindows();
             FXMLLoader loader = new FXMLLoader(FinancePlanner.class.getResource("view/Dash.fxml"));
             AnchorPane dashWindow = (AnchorPane)loader.load();
             rootLayout.setCenter(dashWindow);
@@ -197,6 +200,9 @@ public class FinancePlanner extends Application
         rootLayout.setBottom(null);
     }
     
+    public void setUser(User user){this.user = user;}
+    
+    public User getUser(){return user;}
     public BorderPane getRootLayout(){return rootLayout;}
     public TransactionHandler getTransactionHandler(){return tHandler;}
     public BudgetHandler getBudgetHandler(){return bHandler;}

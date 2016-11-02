@@ -52,6 +52,7 @@ public class DashController
         budgets = app.getBudgetHandler().getBudgets();
         transactions = app.getTransactionHandler().getTransactions();
         refresh();
+        System.out.println("Hello, "+app.getUser().getFirstName());
     }
     
     /*
