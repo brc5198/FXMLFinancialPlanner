@@ -87,24 +87,20 @@ public class Connector {
         //Reads column by column extracting data
         while(rs.next()){
             int id = rs.getInt("Budget_ID"); //ResultSet gets the string from the 'Customer_ID' column from the table
-            String budgetName = rs.getString("BudgetName"); //Same thing...different column
+            String budgetName = rs.getString("Name");
             String startTime = rs.getString("StartTime");
             String endTime = rs.getString("EndTime");
             double amount = rs.getDouble("amount");
-            
-            BudgetHandler bh = new BudgetHandler();
-            Budget b1 = bh.createNewBudget(budgetName, startTime, endTime, amount);
-            
 
-//            InventoryItem i1 = new InventoryItem(id, itemName, itemQuantity, productDescription, unitCost, itemPrice);
-//            itemList.add(i1);
+            Budget i1 = new Budget(id, budgetName, startTime, endTime, amount);
+            itemList.add(i1);
         }
         conn.close();
         return itemList;
     }
 
     
-      public ArrayList<Transaction> populateTransactionArrayList() throws SQLException{
+    public ArrayList<Transaction> populateTransactionArrayList() throws SQLException{
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();    //creates a statement using a specific connection
         ResultSet rs = stmt.executeQuery("SELECT * from Transaction"); //returns a ResultSet based on the statement query
@@ -159,7 +155,7 @@ public class Connector {
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();
             
-        String query = "INSERT into Budget (Budget_ID,Name,StartTime, EndTime, amount, User_ID)" + "values (?,?,?,?, ?)";
+        String query = "INSERT into Budget (Budget_ID,Name,StartTime, EndTime, amount, User_ID)" + "values (?,?,?,?,?,?)";
         System.out.println(query);
         
         PreparedStatement ps = conn.prepareStatement(query);
@@ -173,6 +169,6 @@ public class Connector {
         ps.execute();
         conn.close();
 
-    }   
+    }
    
 }
