@@ -25,12 +25,23 @@ final public class TransactionHandler
 {
     private static ArrayList<Transaction> transactions;
     
-    //private Connector theConnector = new Connector();
+    private Connector theConnector;
     
-    public TransactionHandler()
+    public TransactionHandler() throws SQLException
     {
         transactions = new ArrayList();
-       
+        
+        try
+        {
+            theConnector = new Connector();
+        }
+        catch(SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
+        transactions = theConnector.populateTransactionArrayList();
+        
         /**
         Something like this would be how to start this
 
@@ -53,7 +64,7 @@ final public class TransactionHandler
         */
     }
     
-    public Transaction createNewTransaction(double amount, String timeStamp, String location)
+    public Transaction createNewTransaction(double amount, String timeStamp, String location) throws SQLException
     {
         Transaction newTransaction = new Transaction();
         
@@ -78,6 +89,7 @@ final public class TransactionHandler
         }
         
         transactions.add(newTransaction);
+        theConnector.addNewTransaction(newTransaction.getAmount(), newTransaction.getTimeStamp(), newTransaction.getLocation(), 0);
         return newTransaction;
     }
     

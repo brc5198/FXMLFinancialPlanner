@@ -130,7 +130,7 @@ public class Connector {
         return transList;
     }
       
-    public static void addNewTransaction(double amount, String transaction_date, String location, int Budget_ID) throws SQLException{
+    public void addNewTransaction(double amount, String transaction_date, String location, int Budget_ID) throws SQLException{
 
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();
@@ -154,7 +154,7 @@ public class Connector {
      
     }
       
-    public static void addNewBudget(int Budget_ID, String Name,String StartTime, String EndTime , double amount) throws SQLException{
+    public void addNewBudget(int Budget_ID, String Name,String StartTime, String EndTime , double amount) throws SQLException{
 
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();
