@@ -8,6 +8,7 @@ package financeplanner;
 import financeplanner.controller.*;
 import financeplanner.model.User;
 import java.io.IOException;
+import java.sql.SQLException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXML;
@@ -44,8 +45,8 @@ public class FinancePlanner extends Application
     private HistoryController historyControl;
     private LoginViewController loginControl;
     
-    private TransactionHandler tHandler = new TransactionHandler();
-    private BudgetHandler bHandler = new BudgetHandler();
+    private TransactionHandler tHandler;
+    private BudgetHandler bHandler;
     
     
     /*
@@ -53,10 +54,13 @@ public class FinancePlanner extends Application
     Finds user's dimension and fits app to screen. 
     */
     @Override
-    public void start(Stage primaryStage)
+    public void start(Stage primaryStage) throws SQLException
     {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Finance Planner");
+        
+        tHandler = new TransactionHandler();
+        bHandler = new BudgetHandler();
         
         try
         {

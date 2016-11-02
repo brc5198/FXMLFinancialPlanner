@@ -2,6 +2,7 @@ package financeplanner.controller;
 
 import financeplanner.FinancePlanner;
 import financeplanner.model.Budget;
+import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -43,7 +44,7 @@ public class BudgetViewController
     Handles save button
     */
     @FXML
-    private void handleSaveButton()
+    private void handleSaveButton() throws SQLException
     {
         requestNewBudget();
         app.getDashControl().refresh();
@@ -63,7 +64,7 @@ public class BudgetViewController
     /*
     From BudgetHandler, creates a new budget
     */
-    public Budget requestNewBudget()
+    public Budget requestNewBudget() throws SQLException
     {
         Budget newBudget = null;
         double amount = 0.0;
