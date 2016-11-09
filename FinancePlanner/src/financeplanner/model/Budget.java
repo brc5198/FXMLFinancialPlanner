@@ -25,6 +25,15 @@ public class Budget
         transactions = new ArrayList<Transaction>();
     }
     
+    public Budget(int newBudget_ID, String newName, String newStartTime, String newEndTime, double newAmount) {
+        budget_ID = newBudget_ID;
+        name = newName;
+        startTime = newStartTime;
+        endTime = newEndTime;
+        amount = newAmount;
+        transactions = new ArrayList<Transaction>();
+    }
+    
     public void setBudgetID(int budget_ID){this.budget_ID = budget_ID;}
     public void setName(String name){this.name = name;}
     public void setStartTime(String startTime){this.startTime = startTime;}

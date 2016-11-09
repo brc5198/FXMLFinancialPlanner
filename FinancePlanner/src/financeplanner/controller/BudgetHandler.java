@@ -40,14 +40,14 @@ final public class BudgetHandler
             sqle.printStackTrace();
         }
         
-        budgets.addAll(theConnector.populateBudgetArrayList());
+        budgets.addAll(theConnector.populateBudgetArrayList(1));
         
         /**
         Something like this would be how to start this
 
         * try{
             System.out.println("TRY");
-            DatabaseConnector db = new DatabaseConnector();
+            Connector db = new Connector();
             db.addNewBudget();
         } catch(SQLException sql1){
             sql1.printStackTrace();
@@ -76,8 +76,6 @@ final public class BudgetHandler
     public Budget createNewBudget(String name, String startTime, String endTime, double amount) throws SQLException
     {
         Budget newBudget = new Budget();
-        
-        newBudget.setBudgetID(budgets.size() + 1);
         
         if(name == null)
         {
@@ -109,7 +107,7 @@ final public class BudgetHandler
         newBudget.setAmount(amount);
         
         budgets.add(newBudget);
-        theConnector.addNewBudget(newBudget.getID(), newBudget.getName(), newBudget.getStartTime(), newBudget.getEndTime(), newBudget.getAmount());
+        theConnector.addNewBudget(newBudget);
         return newBudget;
     }
     /*

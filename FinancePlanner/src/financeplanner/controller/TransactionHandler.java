@@ -40,14 +40,13 @@ final public class TransactionHandler
             sqle.printStackTrace();
         }
         
-        transactions = theConnector.populateTransactionArrayList();
         
         /**
         Something like this would be how to start this
 
         * try{
             System.out.println("TRY");
-            DatabaseConnector db = new DatabaseConnector();
+            Connector db = new Connector();
             db.addNewTransaction();
         } catch(SQLException sql1){
             sql1.printStackTrace();
@@ -89,7 +88,7 @@ final public class TransactionHandler
         }
         
         transactions.add(newTransaction);
-        theConnector.addNewTransaction(newTransaction.getAmount(), newTransaction.getTimeStamp(), newTransaction.getLocation(), 0);
+        //theConnector.addNewTransaction(newTransaction.getAmount(), newTransaction.getTimeStamp(), newTransaction.getLocation(), 0);
         return newTransaction;
     }
     
