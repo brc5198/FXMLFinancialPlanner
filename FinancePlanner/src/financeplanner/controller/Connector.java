@@ -116,11 +116,8 @@ public class Connector {
             String location = rs.getString("location");
             int budget_ID = rs.getInt("Budget_ID");
             
-           // Transaction t = new Transaction(id, amount, transDate, location, budget_ID);
-            
-           // System.out.println(id + " " + amount);
-            
-
+            Transaction t = new Transaction(amount, transDate, location, budget_ID);
+            transList.add(t);
         }
         conn.close();
         return transList;
@@ -140,11 +137,8 @@ public class Connector {
             String location = rs.getString("location");
             int budget_ID = rs.getInt("Budget_ID");
             
-           // Transaction t = new Transaction(id, amount, transDate, location, budget_ID);
-            
-           // System.out.println(id + " " + amount);
-            
-
+            Transaction t = new Transaction(amount, transDate, location, budget_ID);
+            transList.add(t);
         }
         conn.close();
         return transList;
