@@ -20,6 +20,13 @@ public class Transaction
         
     }
     
+    public Transaction(double newAmount, String newTimeStamp, String newLocation, int newBudgetID) {
+        this.setAmount(newAmount);
+        this.setTimeStamp(newTimeStamp);
+        this.setLocation(newLocation);
+        this.setBudgetID(newBudgetID);
+    }
+    
     public void setAmount(double amount){this.amount = amount;}
     public void setTimeStamp(String timeStamp){this.timeStamp = timeStamp;}
     public void setLocation(String location){this.location = location;}
