@@ -101,7 +101,7 @@ public class Connector {
     }
 
     
-      public ArrayList<Transaction> populateTransactionArrayList(int budgetID) throws SQLException{
+      public ArrayList<Transaction> populateBudgetTransactionArrayList(int budgetID) throws SQLException{
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();    //creates a statement using a specific connection
         ResultSet rs = stmt.executeQuery("SELECT * from Transaction WHERE Budget_ID = " + budgetID + ";"); //returns a ResultSet based on the statement query
@@ -110,7 +110,31 @@ public class Connector {
 
         //Reads column by column extracting data
         while(rs.next()){
-            int id = rs.getInt("Transactionn_ID"); //ResultSet gets the string from the 'Customer_ID' column from the table
+            //int id = rs.getInt("Transactionn_ID"); //ResultSet gets the string from the 'Customer_ID' column from the table
+            Double amount = rs.getDouble("amount"); //Same thing...different column
+            String transDate = rs.getString("transaction_date");
+            String location = rs.getString("location");
+            int budget_ID = rs.getInt("Budget_ID");
+            
+           // Transaction t = new Transaction(id, amount, transDate, location, budget_ID);
+            
+           // System.out.println(id + " " + amount);
+            
+
+        }
+        conn.close();
+        return transList;
+    }
+      
+    public ArrayList<Transaction> populateTransactionArrayList() throws SQLException{
+        Connection conn = ConnectionToMySql();
+        Statement stmt = conn.createStatement();    //creates a statement using a specific connection
+        ResultSet rs = stmt.executeQuery("SELECT * from Transaction"); //returns a ResultSet based on the statement query
+
+        ArrayList<Transaction> transList = new ArrayList<Transaction>();
+
+        //Reads column by column extracting data
+        while(rs.next()){
             Double amount = rs.getDouble("amount"); //Same thing...different column
             String transDate = rs.getString("transaction_date");
             String location = rs.getString("location");

@@ -40,7 +40,7 @@ final public class TransactionHandler
             sqle.printStackTrace();
         }
         
-        
+        transactions.addAll(theConnector.populateTransactionArrayList());
         /**
         Something like this would be how to start this
 
@@ -63,11 +63,12 @@ final public class TransactionHandler
         */
     }
     
-    public Transaction createNewTransaction(double amount, String timeStamp, String location) throws SQLException
+    public Transaction createNewTransaction(int budgetId, double amount, String timeStamp, String location) throws SQLException
     {
         Transaction newTransaction = new Transaction();
         
         newTransaction.setAmount(amount);
+        newTransaction.setBudgetID(budgetId);
         
         if(timeStamp == null)
         {
@@ -88,7 +89,7 @@ final public class TransactionHandler
         }
         
         transactions.add(newTransaction);
-        //theConnector.addNewTransaction(newTransaction.getAmount(), newTransaction.getTimeStamp(), newTransaction.getLocation(), 0);
+        theConnector.addNewTransaction(newTransaction);
         return newTransaction;
     }
     

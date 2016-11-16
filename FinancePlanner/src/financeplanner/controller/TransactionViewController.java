@@ -6,6 +6,7 @@
 package financeplanner.controller;
 
 import financeplanner.FinancePlanner;
+import financeplanner.model.Budget;
 import financeplanner.model.Transaction;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
@@ -92,8 +93,15 @@ public class TransactionViewController
                 {
                     amount = 0;
                 }
-            
-                newTransaction = app.getTransactionHandler().createNewTransaction(amount, dateInput.getValue().toString(), locationInput.getText());
+                
+                Budget theSelectedBudget = app.getBudgetHandler().getBudgets().get(0);
+                for(int i = 0; i < app.getBudgetHandler().getBudgets().size(); i++) {
+                    if(app.getBudgetHandler().getBudgets().get(i).getName().equals(budgetSelect.getSelectionModel().getSelectedItem().toString())) {
+                        theSelectedBudget = app.getBudgetHandler().getBudgets().get(i);
+                    }
+                }
+                
+                newTransaction = app.getTransactionHandler().createNewTransaction(theSelectedBudget.getID(), amount, dateInput.getValue().toString(), locationInput.getText());
                 
                 for(int i = 0; i < app.getBudgetHandler().getBudgets().size(); i++)
                 {
