@@ -6,6 +6,7 @@
 package financeplanner.controller;
 
 import financeplanner.model.Transaction;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -45,14 +46,14 @@ public class TransactionHandlerTest {
      * Test of createNewTransaction method, of class TransactionHandler.
      */
     @Test
-    public void testCreateNewTransaction() {
+    public void testCreateNewTransaction() throws SQLException {
         System.out.println("createNewTransaction");
         double amount = 0.0;
         String timeStamp = "";
         String location = "";
         TransactionHandler instance = new TransactionHandler();
         Transaction expResult = new Transaction();
-        Transaction result = instance.createNewTransaction(amount, timeStamp, location);
+        Transaction result = instance.createNewTransaction(0, amount, timeStamp, location);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
     }
@@ -61,7 +62,7 @@ public class TransactionHandlerTest {
      * Test of setTransactions method, of class TransactionHandler.
      */
     @Test
-    public void testSetTransactions() {
+    public void testSetTransactions() throws SQLException {
         System.out.println("setTransactions");
         ArrayList<Transaction> transactions = null;
         TransactionHandler instance = new TransactionHandler();
@@ -74,7 +75,7 @@ public class TransactionHandlerTest {
      * Test of getTransactions method, of class TransactionHandler.
      */
     @Test
-    public void testGetTransactions() {
+    public void testGetTransactions() throws SQLException {
         System.out.println("getTransactions");
         TransactionHandler instance = new TransactionHandler();
         ArrayList<Transaction> expResult = new ArrayList();

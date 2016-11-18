@@ -7,6 +7,7 @@ package financeplanner.controller;
 
 import financeplanner.FinancePlanner;
 import financeplanner.model.Budget;
+import java.sql.SQLException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -58,7 +59,7 @@ public class BudgetViewControllerTest {
      * Test of requestNewBudget method, of class BudgetViewController.
      */
     @Test
-    public void testRequestNewBudget() {
+    public void testRequestNewBudget() throws SQLException {
         System.out.println("requestNewBudget");
         BudgetViewController instance = new BudgetViewController();
         Budget expResult = new Budget();

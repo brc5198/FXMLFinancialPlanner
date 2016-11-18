@@ -10,6 +10,7 @@ import financeplanner.controller.BudgetViewController;
 import financeplanner.controller.DashController;
 import financeplanner.controller.TransactionHandler;
 import financeplanner.controller.TransactionViewController;
+import java.sql.SQLException;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.junit.After;
@@ -50,7 +51,7 @@ public class FinancePlannerTest {
      * Test of start method, of class FinancePlanner.
      */
     @Test
-    public void testStart() {
+    public void testStart() throws SQLException {
         System.out.println("start");
         Stage primaryStage = null;
         FinancePlanner instance = new FinancePlanner();

@@ -7,6 +7,7 @@ package financeplanner.controller;
 
 import financeplanner.FinancePlanner;
 import financeplanner.model.Transaction;
+import java.sql.SQLException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -58,7 +59,7 @@ public class TransactionViewControllerTest {
      * Test of requestNewTransaction method, of class TransactionViewController.
      */
     @Test
-    public void testRequestNewTransaction() {
+    public void testRequestNewTransaction() throws SQLException {
         System.out.println("requestNewTransaction");
         TransactionViewController instance = new TransactionViewController();
         Transaction expResult = new Transaction();
