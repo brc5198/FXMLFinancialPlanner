@@ -1,5 +1,7 @@
 package financeplanner.model;
 
+import financeplanner.controller.Connector;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +20,7 @@ public class Budget
     private String startTime;
     private String endTime;
     private double amount;
+    private Connector theConnector;
     private ArrayList<Transaction> transactions;
     
     public Budget()
@@ -25,13 +28,15 @@ public class Budget
         transactions = new ArrayList<Transaction>();
     }
     
-    public Budget(int newBudget_ID, String newName, String newStartTime, String newEndTime, double newAmount) {
+    public Budget(int newBudget_ID, String newName, String newStartTime, String newEndTime, double newAmount) throws SQLException {
         budget_ID = newBudget_ID;
         name = newName;
         startTime = newStartTime;
         endTime = newEndTime;
         amount = newAmount;
-        transactions = new ArrayList<Transaction>();
+        theConnector = new Connector();
+        transactions = theConnector.populateBudgetTransactionArrayList(budget_ID);
+        
     }
     
     public void setBudgetID(int budget_ID){this.budget_ID = budget_ID;}
