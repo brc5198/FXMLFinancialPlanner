@@ -26,7 +26,7 @@ public class LoginViewController
     
     ArrayList<User> users;
     
-    private Connector conn;
+    //private Connector conn;
     
     /**
      * Initializes the controller class.
@@ -43,15 +43,15 @@ public class LoginViewController
         //****************************************
         
         
-        try
-        {
-            conn = new Connector();
-        }
-        catch(SQLException sqle)
-        {
-            sqle.printStackTrace();
-            // TODO Inform user of error
-        }
+//        try
+//        {
+//            conn = new Connector();
+//        }
+//        catch(SQLException sqle)
+//        {
+//            sqle.printStackTrace();
+//            // TODO Inform user of error
+//        }
         
         setupChoiceBox();
     }    

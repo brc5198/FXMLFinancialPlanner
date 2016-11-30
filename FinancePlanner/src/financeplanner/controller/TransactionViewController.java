@@ -61,7 +61,11 @@ public class TransactionViewController
         System.out.println("Save called");
         requestNewTransaction();
         app.getDashControl().refresh();
+        app.getPrimaryStage().setMinWidth(600);
+        app.getPrimaryStage().setMaxWidth(600);
+        app.resizeWindow(600, 400);
         app.removeWindows();
+        
     }
     
     /*
@@ -71,7 +75,11 @@ public class TransactionViewController
     private void handleCancelButton()
     {
         System.out.println("Cancel called");
+        app.getPrimaryStage().setMinWidth(600);
+        app.getPrimaryStage().setMaxWidth(600);
+        app.resizeWindow(600, 400);
         app.removeWindows();
+        
     }
     
     /*
