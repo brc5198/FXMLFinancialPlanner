@@ -158,13 +158,8 @@ public class Connector {
             String firstName = rs.getString("FirstName"); //Same thing...different column
             String lastName = rs.getString("LastName");
 
-            
-           // Transaction t = new Transaction(id, amount, transDate, location, budget_ID);
-            
-           // System.out.println(id + " " + amount);
-            
-//            InventoryItem i1 = new InventoryItem(id, itemName, itemQuantity, productDescription, unitCost, itemPrice);
-//            itemList.add(i1);
+            User theUser = new User(id, firstName, lastName);
+            userList.add(theUser);
         }
         conn.close();
         return userList;
@@ -215,12 +210,12 @@ public class Connector {
 
     }
     
-    public static void addNewUser(User u1) throws SQLException{
+    public void addNewUser(User u1) throws SQLException{
 
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();
             
-        String query = "INSERT into USER (FirstName, LastName)" + "values (?, ?)";
+        String query = "INSERT into User (FirstName, LastName)" + "values (?, ?)";
         System.out.println(query);
         
         PreparedStatement ps = conn.prepareStatement(query);

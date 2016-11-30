@@ -46,6 +46,7 @@ public class LoginViewController
         try
         {
             conn = new Connector();
+            users.addAll(conn.populateUserArrayList());
         }
         catch(SQLException sqle)
         {
@@ -57,7 +58,7 @@ public class LoginViewController
     }    
     
     @FXML
-    private void handleNewLogin()
+    private void handleNewLogin() throws SQLException
     {
         if(checkInput())
         {
@@ -68,6 +69,7 @@ public class LoginViewController
             //Write user into database
             
             app.setUser(user);
+            conn.addNewUser(user);
             app.showDashWindow();
         }
         else
