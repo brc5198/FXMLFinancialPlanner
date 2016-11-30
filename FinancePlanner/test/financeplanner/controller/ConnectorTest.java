@@ -79,7 +79,7 @@ public class ConnectorTest {
         System.out.println("populateBudgetArrayList");
         Connector instance = new Connector();
         ArrayList<Budget> expResult = new ArrayList();
-        ArrayList<Budget> result = instance.populateBudgetArrayList();
+        ArrayList<Budget> result = instance.populateBudgetArrayList(0);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
     }
@@ -107,9 +107,10 @@ public class ConnectorTest {
         String transaction_date = "";
         String location = "";
         int Budget_ID = 0;
+        Transaction theTransaction = new Transaction(amount, transaction_date, location, Budget_ID);
         boolean worked = true;
         try {
-            Connector.addNewTransaction(amount, transaction_date, location, Budget_ID);
+            Connector.addNewTransaction(theTransaction);
         }
         catch(Exception e) {
             worked = false;
@@ -129,9 +130,10 @@ public class ConnectorTest {
         String StartTime = "";
         String EndTime = "";
         double amount = 0.0;
+        Budget theBudget = new Budget(0, Name, StartTime, EndTime, amount);
         boolean worked = true;
         try {
-            Connector.addNewBudget(Budget_ID, Name, StartTime, EndTime, amount);
+            Connector.addNewBudget(theBudget);
         }
         catch(Exception e) {
             worked = false;
