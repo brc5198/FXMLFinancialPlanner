@@ -17,6 +17,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -176,7 +177,7 @@ public class FinancePlanner extends Application
         }
     }
     
-        /*
+    /*
     Loads view for saving budgets and its controller
     */
     public void showHistoryWindow()
@@ -190,6 +191,35 @@ public class FinancePlanner extends Application
             HistoryController controller = loader.getController();
             controller.initialize(this);
             historyControl = controller;
+        }
+        catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+    }
+    
+    /*
+     * Pops up a window with message
+     * 
+     */
+    public void showMessageWindow(String message)
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(FinancePlanner.class.getResource("view/MessageWindow.fxml"));
+            BorderPane pane = (BorderPane)loader.load();
+            Stage popupStage = new Stage();
+              popupStage.setTitle("Message");
+              popupStage.initModality(Modality.WINDOW_MODAL);
+              popupStage.initOwner(primaryStage);
+            Scene scene = new Scene(pane);
+            popupStage.setScene(scene);
+            
+            MessageWindowController controller = loader.getController();
+            controller.setPopupStage(popupStage);
+            controller.setApp(this);
+            controller.setMessage(message);
+            popupStage.showAndWait();
         }
         catch(IOException ioe)
         {
