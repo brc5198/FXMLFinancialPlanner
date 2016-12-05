@@ -74,8 +74,7 @@ public class LoginViewController
         }
         else
         {
-            //TODO inform user of incorrect fields
-            System.out.println("One or more fields are incorrect");
+            app.showMessageWindow("One or more fields are incorrect");
         }
     }
     

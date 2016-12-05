@@ -3,6 +3,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -76,4 +77,7 @@
          </children>
       </VBox>
    </children>
+   <stylesheets>
+    <URL value="@Base.css" />
+  </stylesheets>
 </AnchorPane>
