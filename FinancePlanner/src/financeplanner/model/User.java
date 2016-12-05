@@ -15,6 +15,12 @@ public class User
         
     }
     
+    public User(int newUserID, String newFirstName, String newLastName) {
+        userID = newUserID;
+        firstName = newFirstName;
+        lastName = newLastName;
+    }
+    
     //Setters
     public void setUserID(int userID){this.userID = userID;}
     public void setFirstName(String firstName){this.firstName = firstName;}

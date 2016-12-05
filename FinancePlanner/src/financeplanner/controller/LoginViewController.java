@@ -26,7 +26,7 @@ public class LoginViewController
     
     ArrayList<User> users;
     
-    //private Connector conn;
+    private Connector conn;
     
     /**
      * Initializes the controller class.
@@ -43,21 +43,22 @@ public class LoginViewController
         //****************************************
         
         
-//        try
-//        {
-//            conn = new Connector();
-//        }
-//        catch(SQLException sqle)
-//        {
-//            sqle.printStackTrace();
-//            // TODO Inform user of error
-//        }
+        try
+        {
+            conn = new Connector();
+            users.addAll(conn.populateUserArrayList());
+        }
+        catch(SQLException sqle)
+        {
+            sqle.printStackTrace();
+            // TODO Inform user of error
+        }
         
         setupChoiceBox();
     }    
     
     @FXML
-    private void handleNewLogin()
+    private void handleNewLogin() throws SQLException
     {
         if(checkInput())
         {
@@ -68,6 +69,7 @@ public class LoginViewController
             //Write user into database
             
             app.setUser(user);
+            conn.addNewUser(user);
             app.showDashWindow();
         }
         else
