@@ -50,6 +50,7 @@ public class HistoryController {
     private void handleOkButton()
     {
         app.removeWindows();
+        app.showDashWindow();
     }
     
     public void refresh()
