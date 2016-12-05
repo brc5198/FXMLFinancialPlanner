@@ -58,10 +58,15 @@ public class TransactionViewController
     @FXML
     private void handleSaveButton() throws SQLException
     {
-        System.out.println("Save called");
-        requestNewTransaction();
-        app.getDashControl().refresh();
-        app.removeWindows();
+        if(requestNewTransaction()!= null)
+        {
+            app.getDashControl().refresh();
+            app.getPrimaryStage().setMinWidth(600);
+            app.getPrimaryStage().setMaxWidth(600);
+            app.resizeWindow(600, 400);
+            app.removeWindows();
+        }
+        
     }
     
     /*
@@ -71,7 +76,11 @@ public class TransactionViewController
     private void handleCancelButton()
     {
         System.out.println("Cancel called");
+        app.getPrimaryStage().setMinWidth(600);
+        app.getPrimaryStage().setMaxWidth(600);
+        app.resizeWindow(600, 400);
         app.removeWindows();
+        
     }
     
     /*
@@ -88,45 +97,39 @@ public class TransactionViewController
                 try
                 {
                     amount = Double.parseDouble(amountInput.getText());
+                    
+                    Budget theSelectedBudget = app.getBudgetHandler().getBudgets().get(0);
+                    for(int i = 0; i < app.getBudgetHandler().getBudgets().size(); i++) {
+                        if(app.getBudgetHandler().getBudgets().get(i).getName().equals(budgetSelect.getSelectionModel().getSelectedItem().toString())) {
+                            theSelectedBudget = app.getBudgetHandler().getBudgets().get(i);
+                        }
+                    }
+
+                    newTransaction = app.getTransactionHandler().createNewTransaction(theSelectedBudget.getID(), amount, dateInput.getValue().toString(), locationInput.getText());
+
+                    for(int i = 0; i < app.getBudgetHandler().getBudgets().size(); i++)
+                    {
+                        if(app.getBudgetHandler().getBudgets().get(i).getName().equals(budgetSelect.getSelectionModel().getSelectedItem()))
+                        {
+                            app.getBudgetHandler().getBudgets().get(i).getTransactions().add(newTransaction);
+                        }
+                    }
                 }
                 catch(NumberFormatException nfe)
                 {
-                    amount = 0;
-                }
-                
-                Budget theSelectedBudget = app.getBudgetHandler().getBudgets().get(0);
-                for(int i = 0; i < app.getBudgetHandler().getBudgets().size(); i++) {
-                    if(app.getBudgetHandler().getBudgets().get(i).getName().equals(budgetSelect.getSelectionModel().getSelectedItem().toString())) {
-                        theSelectedBudget = app.getBudgetHandler().getBudgets().get(i);
-                    }
-                }
-                
-                newTransaction = app.getTransactionHandler().createNewTransaction(theSelectedBudget.getID(), amount, dateInput.getValue().toString(), locationInput.getText());
-                
-                for(int i = 0; i < app.getBudgetHandler().getBudgets().size(); i++)
-                {
-                    if(app.getBudgetHandler().getBudgets().get(i).getName().equals(budgetSelect.getSelectionModel().getSelectedItem()))
-                    {
-                        app.getBudgetHandler().getBudgets().get(i).getTransactions().add(newTransaction);
-                    }
+                    amountInput.setStyle("-fx-background-color: red;");
+                    app.showMessageWindow("Please enter a numeric value for the amount");
+                    newTransaction = null;
                 }
             }
             else
             {
-                System.out.println("A budget must first be created");
-                /*
-                TODO:
-                Notify user to create a budget
-                */
+                app.showMessageWindow("A budget must first be created");
             }
         }
         else
         {
-            System.out.println("One or more fields are missing");
-            /*
-            TODO:
-            Notify user of incorrect input
-            */         
+            app.showMessageWindow("One or more fields are missing");   
         }
         
         return newTransaction;
@@ -136,10 +139,26 @@ public class TransactionViewController
     {
         boolean complete = true;
         
-        if(amountInput.getText() == null){complete = false;}
-        if(locationInput.getText() == null){complete = false;}
-        if(dateInput.getValue() == null){complete = false;}
-        if(descriptionInput.getText() == null){complete = false;}
+        if(amountInput.getText() == null)
+        {
+            complete = false;
+            amountInput.setStyle("-fx-background-color: red;");
+        }
+        if(locationInput.getText() == null)
+        {
+            complete = false;
+            locationInput.setStyle("-fx-background-color: red;");
+        }
+        if(dateInput.getValue() == null)
+        {
+            complete = false;
+            dateInput.setStyle("-fx-background-color: red;");
+        }
+        if(descriptionInput.getText() == null)
+        {
+            complete = false;
+            descriptionInput.setStyle("-fx-background-color: red;");
+        }
         
         return complete;
     }

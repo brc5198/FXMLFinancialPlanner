@@ -17,6 +17,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -70,12 +71,12 @@ public class FinancePlanner extends Application
             primaryStage.setScene(scene);
             
             //Adjust to user screen
-            Screen userScreen = Screen.getPrimary();
-            Rectangle2D bounds = userScreen.getVisualBounds();
-            primaryStage.setX(bounds.getMinX());
-            primaryStage.setY(bounds.getMinY());
-            primaryStage.setWidth(bounds.getWidth());
-            primaryStage.setHeight(bounds.getHeight());
+            //Screen userScreen = Screen.getPrimary();
+            //Rectangle2D bounds = userScreen.getVisualBounds();
+            //primaryStage.setX(bounds.getMinX());
+            //primaryStage.setY(bounds.getMinY());
+            //primaryStage.setWidth(bounds.getWidth());
+            //primaryStage.setHeight(bounds.getHeight());
             
             primaryStage.show();
         }
@@ -144,6 +145,8 @@ public class FinancePlanner extends Application
             TransactionViewController controller = loader.getController();
             controller.initialize(this);
             transactionControl = controller;
+            primaryStage.setMinWidth(900);
+            primaryStage.setMaxWidth(900);
         }
         catch(IOException ioe)
         {
@@ -165,6 +168,8 @@ public class FinancePlanner extends Application
             BudgetViewController controller = loader.getController();
             controller.initialize(this);
             budgetControl = controller;
+            primaryStage.setMinWidth(900);
+            primaryStage.setMaxWidth(900);
         }
         catch(IOException ioe)
         {
@@ -172,7 +177,7 @@ public class FinancePlanner extends Application
         }
     }
     
-        /*
+    /*
     Loads view for saving budgets and its controller
     */
     public void showHistoryWindow()
@@ -181,11 +186,40 @@ public class FinancePlanner extends Application
         {
             FXMLLoader loader = new FXMLLoader(FinancePlanner.class.getResource("view/History.fxml"));
             AnchorPane historyWindow = (AnchorPane)loader.load();
-            rootLayout.setLeft(historyWindow);
+            rootLayout.setCenter(historyWindow);
             
             HistoryController controller = loader.getController();
             controller.initialize(this);
             historyControl = controller;
+        }
+        catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+    }
+    
+    /*
+     * Pops up a window with message
+     * 
+     */
+    public void showMessageWindow(String message)
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(FinancePlanner.class.getResource("view/MessageWindow.fxml"));
+            BorderPane pane = (BorderPane)loader.load();
+            Stage popupStage = new Stage();
+              popupStage.setTitle("Message");
+              popupStage.initModality(Modality.WINDOW_MODAL);
+              popupStage.initOwner(primaryStage);
+            Scene scene = new Scene(pane);
+            popupStage.setScene(scene);
+            
+            MessageWindowController controller = loader.getController();
+            controller.setPopupStage(popupStage);
+            controller.setApp(this);
+            controller.setMessage(message);
+            popupStage.showAndWait();
         }
         catch(IOException ioe)
         {
@@ -204,6 +238,12 @@ public class FinancePlanner extends Application
         rootLayout.setBottom(null);
     }
     
+    public void resizeWindow(int width, int height)
+    {
+        this.primaryStage.setMinWidth(width);
+        this.primaryStage.setMinHeight(height);
+    }
+    
     public void setUser(User user){this.user = user;}
     
     public User getUser(){return user;}
@@ -213,6 +253,7 @@ public class FinancePlanner extends Application
     public TransactionViewController getTransactionControl(){return transactionControl;}
     public BudgetViewController getBudgetControl(){return budgetControl;}
     public DashController getDashControl(){return dashControl;}
+    public Stage getPrimaryStage(){return primaryStage;}
     
     public static void main(String[] args)
     {

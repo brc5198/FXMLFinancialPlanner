@@ -1,0 +1,60 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 1, 2016, 3:41:12 PM
+    Author     : Ardjen
+*/
+
+VBox
+{
+    -fx-background-color: #f7f7d4;
+    -fx-border-radius: 8 8 8 8;
+    -fx-background-radius: 8 8 8 8;
+}
+
+GridPane
+{
+    -fx-background-color: #f7f7d4;
+    -fx-border-color: #663500;
+    -fx-border-radius: 8 8 0 0;
+    -fx-background-radius: 8 8 0 0;
+}
+
+BorderPane
+{
+    -fx-background-color: #f7f7d4;
+    -fx-border-color: #4d2800;
+}
+
+.label
+{
+    -fx-font-family: Tahoma, Geneva, sans-serif;
+    -fx-text-fill: #663500;
+    -fx-font-weight: bold;
+}
+
+.background 
+{
+    -fx-background-color: #f7f7d4;
+}
+
+.button
+{
+    -fx-border-color: #000000;
+    -fx-background-color: #006600;
+    -fx-font-family: Tahoma, Geneva, sans-serif;
+    -fx-font-size: 9pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-border-radius: 8 8 8 8;
+    -fx-background-radius: 8 8 8 8;
+}
+
+TextField
+{
+    -fx-border-color: #663500;
+    -fx-background-color: #e9e9e2;
+}

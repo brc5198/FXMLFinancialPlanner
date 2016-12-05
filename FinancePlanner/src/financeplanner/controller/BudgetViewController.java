@@ -46,9 +46,14 @@ public class BudgetViewController
     @FXML
     private void handleSaveButton() throws SQLException
     {
-        requestNewBudget();
-        app.getDashControl().refresh();
-        app.removeWindows();
+        if(requestNewBudget() != null)
+        {
+            app.getDashControl().refresh();
+            app.getPrimaryStage().setMinWidth(600);
+            app.getPrimaryStage().setMaxWidth(600);
+            app.resizeWindow(600, 400);
+            app.removeWindows();
+        }
     }
     
     /*
@@ -58,6 +63,9 @@ public class BudgetViewController
     private void handleCancelButton()
     {
         System.out.println("Cancel called");
+        app.getPrimaryStage().setMinWidth(600);
+        app.getPrimaryStage().setMaxWidth(600);
+        app.resizeWindow(600, 400);
         app.removeWindows();
     }
     
@@ -74,24 +82,20 @@ public class BudgetViewController
             try
             {
                 amount = Double.parseDouble(amountInput.getText());
+                newBudget = app.getBudgetHandler().createNewBudget(categoryInput.getText(), startInput.getValue().toString(), endInput.getValue().toString(), amount);
             }
             catch(NumberFormatException nfe)
             {
-                amount = 0;
-            }
-
-            newBudget = app.getBudgetHandler().createNewBudget(categoryInput.getText(), startInput.getValue().toString(), endInput.getValue().toString(), amount);    
+                app.showMessageWindow("Please enter a numeric value for a budget");
+                newBudget = null;
+                amountInput.setStyle("-fx-background-color: red;");
+            }   
         } 
         else
         {
-            System.out.println("One or more fields are missing");
-            /*
-            TODO:
-            Notify user of incorrect input
-            */         
+            app.showMessageWindow("One or more fields are missing");
         }
-        
-         
+                
         return newBudget;
     }
     
@@ -99,10 +103,26 @@ public class BudgetViewController
     {
         boolean complete = true;
         
-        if(categoryInput.getText() == null){complete = false;}
-        if(amountInput.getText() == null){complete = false;}
-        if(startInput.getValue().toString() == null){complete = false;}
-        if(endInput.getValue().toString() == null){complete = false;}
+        if(categoryInput.getText() == null)
+        {
+            complete = false;
+            categoryInput.setStyle("-fx-background-color: red;");
+        }
+        if(amountInput.getText() == null)
+        {
+            complete = false;
+            amountInput.setStyle("-fx-background-color: red;");
+        }
+        if(startInput.getValue() == null)
+        {
+            complete = false;
+            startInput.setStyle("-fx-background-color: red;");
+        }
+        if(endInput.getValue() == null)
+        {
+            complete = false;
+            endInput.setStyle("-fx-background-color: red;");
+        }
         
         return complete;
     }
