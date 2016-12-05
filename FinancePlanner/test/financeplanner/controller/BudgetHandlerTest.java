@@ -42,46 +42,19 @@ public class BudgetHandlerTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of createNewBudget method, of class BudgetHandler.
-     */
-    @Test
-    public void testCreateNewBudget() throws SQLException {
-        System.out.println("createNewBudget");
-        String name = "testName";
-        String startTime = "testTime";
-        String endTime = "testTime";
-        double amount = 0.0;
-        BudgetHandler instance = new BudgetHandler();
-        Budget expResult = null;
-        Budget result = instance.createNewBudget(name, startTime, endTime, amount);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-    }
 
-    /**
-     * Test of calculateBudgetsSum method, of class BudgetHandler.
-     */
-    @Test
-    public void testCalculateBudgetsSum() throws SQLException {
-        System.out.println("calculateBudgetsSum");
-        BudgetHandler instance = new BudgetHandler();
-        double expResult = 0.0;
-        double result = instance.calculateBudgetsSum();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-    }
 
     /**
      * Test of calculateBudgetRemainder method, of class BudgetHandler.
      */
     @Test
-    public void testCalculateBudgetRemainder() {
+    public void testCalculateBudgetRemainder() throws SQLException{
         System.out.println("calculateBudgetRemainder");
-        Budget budget = null;
-        double expResult = 0.0;
+        BudgetHandler bh1 = new BudgetHandler();
+        Budget budget = bh1.createNewBudget("name", "10-10-1002", "10-10-2011", 5.00);
+        double expResult = 5.0;
         double result = BudgetHandler.calculateBudgetRemainder(budget);
-        assertEquals(expResult, result, 0.0);
+        assertEquals(expResult, result, 5.0);
         // TODO review the generated test code and remove the default call to fail.
     }
 
@@ -89,38 +62,13 @@ public class BudgetHandlerTest {
      * Test of calculateBudgetRemainderPercent method, of class BudgetHandler.
      */
     @Test
-    public void testCalculateBudgetRemainderPercent() {
+    public void testCalculateBudgetRemainderPercent() throws SQLException {
         System.out.println("calculateBudgetRemainderPercent");
-        Budget budget = null;
-        double expResult = 0.0;
+        BudgetHandler bh1 = new BudgetHandler();
+        Budget budget = bh1.createNewBudget("name", "10-10-1002", "10-10-2011", 5.00);
+        double expResult = 1.0;
         double result = BudgetHandler.calculateBudgetRemainderPercent(budget);
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-    }
-
-    /**
-     * Test of setBudgets method, of class BudgetHandler.
-     */
-    @Test
-    public void testSetBudgets() throws SQLException {
-        System.out.println("setBudgets");
-        ArrayList<Budget> budgets = new ArrayList();
-        BudgetHandler instance = new BudgetHandler();
-        instance.setBudgets(budgets);
-        // TODO review the generated test code and remove the default call to fail.
-        assertEquals(instance.getBudgets(), budgets);
-    }
-
-    /**
-     * Test of getBudgets method, of class BudgetHandler.
-     */
-    @Test
-    public void testGetBudgets() throws SQLException {
-        System.out.println("getBudgets");
-        BudgetHandler instance = new BudgetHandler();
-        ArrayList<Budget> expResult = null;
-        ArrayList<Budget> result = instance.getBudgets();
-        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
     }
     

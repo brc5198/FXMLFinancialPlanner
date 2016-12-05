@@ -8,6 +8,7 @@ package financeplanner.controller;
 import financeplanner.model.Budget;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -155,7 +156,7 @@ final public class BudgetHandler
     /*
     Returns current time
     */
-    private String getCurrentTime()
+    public String getCurrentTime()
     {
         String currentTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date());
         return currentTime;
@@ -164,4 +165,8 @@ final public class BudgetHandler
     public void setBudgets(ArrayList<Budget> budgets){this.budgets = budgets;}
     
     public ArrayList<Budget> getBudgets(){return budgets;}
+
+    Budget createNewBudget(String name, LocalDateTime startTime, long endTime, double amount) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
