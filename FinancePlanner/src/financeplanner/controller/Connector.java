@@ -208,6 +208,20 @@ public class Connector {
         ps.execute();
         conn.close();
     }
+    
+    public static void deleteTransaction(Transaction t1) throws SQLException{
+        Connection conn = ConnectionToMySql();
+        Statement stmt = conn.createStatement();
+
+        String deleteStatement = "DELETE from Transaction WHERE Transaction_ID = ?";
+        PreparedStatement ps = conn.prepareStatement(deleteStatement);
+
+        ps.setDouble(1, t1.getTransactionID());
+        
+        ps.execute();
+        conn.close();
+        
+    }
       
     public static void addNewBudget(Budget b1) throws SQLException{
 
@@ -247,6 +261,21 @@ public class Connector {
         conn.close();
     }
     
+        public static void deleteBudget(Budget b1) throws SQLException{
+        Connection conn = ConnectionToMySql();
+        Statement stmt = conn.createStatement();
+
+        String deleteStatement = "DELETE from Budget WHERE Budget_ID = ?";
+        PreparedStatement ps = conn.prepareStatement(deleteStatement);
+
+        ps.setDouble(1, b1.getID());
+        
+        ps.execute();
+        conn.close();
+        
+    }    
+        
+        
     public static void addNewUser(User u1) throws SQLException{
 
 
