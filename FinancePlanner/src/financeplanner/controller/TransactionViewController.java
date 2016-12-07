@@ -109,8 +109,7 @@ public class TransactionViewController
     {
         if(theTransaction != null)
         {
-            
-            
+            transactionHandler.deleteTransaction(theTransaction);
             
             app.getDashControl().refresh();
             app.getPrimaryStage().setMinWidth(600);

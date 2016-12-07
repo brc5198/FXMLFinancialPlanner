@@ -122,7 +122,9 @@ final public class TransactionHandler
         return newTransaction;
     }
     
-    private void deleteTransaction(Transaction theTransaction) throws SQLException {
+    public void deleteTransaction(Transaction theTransaction) throws SQLException {
+        
+        transactions.remove(theTransaction);
         theConnector.deleteTransaction(theTransaction);
     }
     
