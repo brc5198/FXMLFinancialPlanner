@@ -110,13 +110,14 @@ public class Connector {
 
         //Reads column by column extracting data
         while(rs.next()){
-            //int id = rs.getInt("Transactionn_ID"); //ResultSet gets the string from the 'Customer_ID' column from the table
+            
+            int id = rs.getInt("Transaction_ID"); //ResultSet gets the string from the 'Customer_ID' column from the table
             Double amount = rs.getDouble("amount"); //Same thing...different column
             String transDate = rs.getString("transaction_date");
             String location = rs.getString("location");
             int budget_ID = rs.getInt("Budget_ID");
             
-            Transaction t = new Transaction(amount, transDate, location, budget_ID);
+            Transaction t = new Transaction(id, amount, transDate, location, budget_ID);
             transList.add(t);
         }
         conn.close();
@@ -132,12 +133,13 @@ public class Connector {
 
         //Reads column by column extracting data
         while(rs.next()){
+            int id = rs.getInt("Transaction_ID");
             Double amount = rs.getDouble("amount"); //Same thing...different column
             String transDate = rs.getString("transaction_date");
             String location = rs.getString("location");
             int budget_ID = rs.getInt("Budget_ID");
             
-            Transaction t = new Transaction(amount, transDate, location, budget_ID);
+            Transaction t = new Transaction(id, amount, transDate, location, budget_ID);
             transList.add(t);
         }
         conn.close();
@@ -189,6 +191,37 @@ public class Connector {
         conn.close();
      
     }
+    
+    public static void updateTransaction(Transaction t1) throws SQLException{
+        Connection conn = ConnectionToMySql();
+        Statement stmt = conn.createStatement();
+
+        String updateStatement = "UPDATE Transaction SET amount = ?, transaction_date = ?, location = ?, Budget_ID = ? WHERE Transaction_ID = ?";
+        PreparedStatement ps = conn.prepareStatement(updateStatement);
+
+        ps.setDouble(1, t1.getAmount());
+        ps.setString(2, t1.getTimeStamp());
+        ps.setString(3, t1.getLocation());
+        ps.setInt(4, t1.getBudgetID());
+        ps.setInt(5, t1.getTransactionID());
+        
+        ps.execute();
+        conn.close();
+    }
+    
+    public static void deleteTransaction(Transaction t1) throws SQLException{
+        Connection conn = ConnectionToMySql();
+        Statement stmt = conn.createStatement();
+
+        String deleteStatement = "DELETE from Transaction WHERE Transaction_ID = ?";
+        PreparedStatement ps = conn.prepareStatement(deleteStatement);
+
+        ps.setDouble(1, t1.getTransactionID());
+        
+        ps.execute();
+        conn.close();
+        
+    }
       
     public static void addNewBudget(Budget b1) throws SQLException{
 
@@ -210,7 +243,41 @@ public class Connector {
 
     }
     
-    public void addNewUser(User u1) throws SQLException{
+        public static void updateBudget(Budget b1) throws SQLException{
+        Connection conn = ConnectionToMySql();
+        Statement stmt = conn.createStatement();
+
+        String updateStatement = "UPDATE Budget SET name = ?, StartTime = ?, EndTime = ?, amount = ? WHERE Budget_ID = ?";
+        PreparedStatement ps = conn.prepareStatement(updateStatement);
+
+        ps.setDouble(1, b1.getAmount());
+        ps.setString(2, b1.getStartTime());
+        ps.setString(3, b1.getEndTime());
+        ps.setDouble(4, b1.getAmount());
+        ps.setInt(5, b1.getID());
+        
+        
+        ps.execute();
+        conn.close();
+    }
+    
+        public static void deleteBudget(Budget b1) throws SQLException{
+        Connection conn = ConnectionToMySql();
+        Statement stmt = conn.createStatement();
+
+        String deleteStatement = "DELETE from Budget WHERE Budget_ID = ?";
+        PreparedStatement ps = conn.prepareStatement(deleteStatement);
+
+        ps.setDouble(1, b1.getID());
+        
+        ps.execute();
+        conn.close();
+        
+    }    
+        
+        
+    public static void addNewUser(User u1) throws SQLException{
+
 
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();
