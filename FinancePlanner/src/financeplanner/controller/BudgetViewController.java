@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -25,6 +26,9 @@ public class BudgetViewController
     @FXML DatePicker endInput;
     @FXML Button saveButton;
     @FXML Button cancelButton;
+    @FXML Label startLabel;
+    @FXML Label endLabel;
+    @FXML Button deleteButton;
     
     private FinancePlanner app;
     
@@ -49,6 +53,12 @@ public class BudgetViewController
         
         categoryInput.setText(theBudget.getName());
         amountInput.setText(String.valueOf(theBudget.getAmount()));
+        
+        startInput.setVisible(false);
+        endInput.setVisible(false);
+        startLabel.setVisible(false);
+        endLabel.setVisible(false);
+        deleteButton.setVisible(true);
         
     }
     
@@ -79,6 +89,21 @@ public class BudgetViewController
         app.getPrimaryStage().setMaxWidth(600);
         app.resizeWindow(600, 400);
         app.removeWindows();
+    }
+    
+    @FXML
+    private void handleDeleteButton()
+    {
+        if(theBudget != null)
+        {
+            
+            
+            app.getDashControl().refresh();
+            app.getPrimaryStage().setMinWidth(600);
+            app.getPrimaryStage().setMaxWidth(600);
+            app.resizeWindow(600, 400);
+            app.removeWindows();
+        }
     }
     
     /*
