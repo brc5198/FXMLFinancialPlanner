@@ -124,7 +124,7 @@ public class BudgetViewController
                     newBudget = app.getBudgetHandler().createNewBudget(categoryInput.getText(), startInput.getValue().toString(), endInput.getValue().toString(), amount);
                 }
                 else {
-                    newBudget = app.getBudgetHandler().EditBudget(theBudget.getID(), categoryInput.getText(), startInput.getValue().toString(), endInput.getValue().toString(), amount);
+                    newBudget = app.getBudgetHandler().EditBudget(theBudget.getID(), categoryInput.getText(), theBudget.getStartTime(), theBudget.getEndTime(), amount);
                 }
             }
             catch(NumberFormatException nfe)
@@ -158,12 +158,12 @@ public class BudgetViewController
         }
         if(startInput.getValue() == null)
         {
-            complete = false;
+            complete = true;
             startInput.setStyle("-fx-background-color: red;");
         }
         if(endInput.getValue() == null)
         {
-            complete = false;
+            complete = true;
             endInput.setStyle("-fx-background-color: red;");
         }
         
