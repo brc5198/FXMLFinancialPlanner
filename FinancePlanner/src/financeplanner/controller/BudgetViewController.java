@@ -92,11 +92,11 @@ public class BudgetViewController
     }
     
     @FXML
-    private void handleDeleteButton()
+    private void handleDeleteButton() throws SQLException
     {
         if(theBudget != null)
         {
-            
+            budgetHandler.deleteBudget(theBudget);
             
             app.getDashControl().refresh();
             app.getPrimaryStage().setMinWidth(600);

@@ -151,6 +151,11 @@ final public class BudgetHandler
         return newBudget;
     }
     
+    public void deleteBudget(Budget theBudget) throws SQLException {
+        budgets.remove(theBudget);
+        theConnector.deleteBudget(theBudget);
+    }
+    
     /*
     Given a list of budgets, calculates the sum of all the budget limits
     */

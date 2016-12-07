@@ -261,7 +261,7 @@ public class Connector {
         conn.close();
     }
     
-        public static void deleteBudget(Budget b1) throws SQLException{
+        public void deleteBudget(Budget b1) throws SQLException{
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();
 
