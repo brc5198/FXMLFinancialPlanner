@@ -122,6 +122,10 @@ final public class TransactionHandler
         return newTransaction;
     }
     
+    private void deleteTransaction(Transaction theTransaction) throws SQLException {
+        theConnector.deleteTransaction(theTransaction);
+    }
+    
     /*
     Returns current time
     */

@@ -31,9 +31,9 @@ public class TransactionViewController
     @FXML TextField amountInput;
     @FXML TextField locationInput;
     @FXML DatePicker dateInput;
-    @FXML TextArea descriptionInput;
     @FXML Button saveButton;
     @FXML Button cancelButton;
+    @FXML Button deleteButton;
     @FXML ChoiceBox budgetSelect;
     
     private FinancePlanner app;
@@ -64,7 +64,8 @@ public class TransactionViewController
         amountInput.setText(String.valueOf(theTransaction.getAmount()));
         locationInput.setText(theTransaction.getLocation());
         //dateInput.setChronology(value);
-        //descriptionInput.setText(value);
+        
+        deleteButton.setVisible(true);
         
         choiceboxSetup();
     }
@@ -97,6 +98,26 @@ public class TransactionViewController
         app.getPrimaryStage().setMaxWidth(600);
         app.resizeWindow(600, 400);
         app.removeWindows();
+        
+    }
+    
+        /*
+    Handles save button
+    */
+    @FXML
+    private void handleDeleteButton() throws SQLException
+    {
+        if(theTransaction != null)
+        {
+            
+            
+            
+            app.getDashControl().refresh();
+            app.getPrimaryStage().setMinWidth(600);
+            app.getPrimaryStage().setMaxWidth(600);
+            app.resizeWindow(600, 400);
+            app.removeWindows();
+        }
         
     }
     
@@ -195,11 +216,6 @@ public class TransactionViewController
         {
             complete = false;
             dateInput.setStyle("-fx-background-color: red;");
-        }
-        if(descriptionInput.getText() == null)
-        {
-            complete = false;
-            descriptionInput.setStyle("-fx-background-color: red;");
         }
         
         return complete;

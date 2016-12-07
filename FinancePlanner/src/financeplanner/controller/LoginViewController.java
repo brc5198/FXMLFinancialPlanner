@@ -79,7 +79,7 @@ public class LoginViewController
     }
     
     @FXML
-    private void handleReturnLogin()
+    private void handleReturnLogin() throws SQLException
     {
         int index = userSelect.getSelectionModel().getSelectedIndex();
         User user = users.get(index);

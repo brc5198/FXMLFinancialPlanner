@@ -209,7 +209,7 @@ public class Connector {
         conn.close();
     }
     
-    public static void deleteTransaction(Transaction t1) throws SQLException{
+    public void deleteTransaction(Transaction t1) throws SQLException{
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();
 

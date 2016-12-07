@@ -9,6 +9,7 @@ import financeplanner.FinancePlanner;
 import financeplanner.model.Budget;
 import financeplanner.model.Transaction;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.EventHandler;
@@ -49,7 +50,7 @@ public class HistoryController {
     Handles transaction button
     */
     @FXML
-    private void handleOkButton()
+    private void handleOkButton() throws SQLException
     {
         app.removeWindows();
         app.showDashWindow();
