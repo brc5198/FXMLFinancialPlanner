@@ -6,6 +6,7 @@
 package financeplanner;
 
 import financeplanner.controller.*;
+import financeplanner.model.Transaction;
 import financeplanner.model.User;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -144,6 +145,29 @@ public class FinancePlanner extends Application
             
             TransactionViewController controller = loader.getController();
             controller.initialize(this);
+            transactionControl = controller;
+            primaryStage.setMinWidth(900);
+            primaryStage.setMaxWidth(900);
+        }
+        catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+    }
+    
+    /*
+    Loads view for saving transactions and its controller
+    */
+    public void showTransactionWindow(Transaction theTransaction)
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(FinancePlanner.class.getResource("view/TransactionView.fxml"));
+            AnchorPane transactionWindow = (AnchorPane)loader.load();
+            rootLayout.setLeft(transactionWindow);
+            
+            TransactionViewController controller = loader.getController();
+            controller.initialize(this, theTransaction);
             transactionControl = controller;
             primaryStage.setMinWidth(900);
             primaryStage.setMaxWidth(900);

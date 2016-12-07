@@ -11,10 +11,12 @@ import financeplanner.model.Transaction;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -82,12 +84,18 @@ public class HistoryController {
         
         for(int i = 0; i < transactions.size(); i++)
         {
+            final Transaction theTransaction = transactions.get(i);
+
             //Create a row
             RowConstraints row = new RowConstraints();
             row.setMinHeight(50);
             display.getRowConstraints().add(row);
             //Wrap the budget information Nodes
-            Label locationLabel = new Label(transactions.get(i).getLocation());
+            Hyperlink locationLabel = new Hyperlink(transactions.get(i).getLocation());
+            locationLabel.setOnAction((event) -> {
+                // Button was clicked, do something...
+                app.showTransactionWindow(theTransaction);
+            });
             Label amountLabel = new Label(String.valueOf(transactions.get(i).getAmount()));
             Label timeLabel = new Label(transactions.get(i).getTimeStamp());
             //Add the nodes to the grid

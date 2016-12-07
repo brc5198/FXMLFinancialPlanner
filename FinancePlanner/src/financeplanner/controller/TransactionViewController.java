@@ -39,6 +39,7 @@ public class TransactionViewController
     private FinancePlanner app;
     
     private TransactionHandler transactionHandler;
+    private Transaction theTransaction = null;
 
     /**
      * Initializes the controller class.
@@ -48,6 +49,20 @@ public class TransactionViewController
     {
         this.app = app;
         transactionHandler = app.getTransactionHandler();
+        
+        choiceboxSetup();
+    }
+    
+    public void initialize(FinancePlanner app, Transaction editingTransaction)
+    {
+        this.app = app;
+        transactionHandler = app.getTransactionHandler();
+        theTransaction = editingTransaction;
+        
+        amountInput.setText(String.valueOf(theTransaction.getAmount()));
+        locationInput.setText(theTransaction.getLocation());
+        //dateInput.setChronology(value);
+        //descriptionInput.setText(value);
         
         choiceboxSetup();
     }
@@ -88,8 +103,9 @@ public class TransactionViewController
     */
     public Transaction requestNewTransaction() throws SQLException
     {
-        Transaction newTransaction = null;
+        Transaction newTransaction = theTransaction;
         double amount = 0;
+        
         if(checkInput())
         {
             if(!budgetSelect.getSelectionModel().getSelectedItem().equals("No Budgets"))
@@ -104,16 +120,24 @@ public class TransactionViewController
                             theSelectedBudget = app.getBudgetHandler().getBudgets().get(i);
                         }
                     }
-
-                    newTransaction = app.getTransactionHandler().createNewTransaction(theSelectedBudget.getID(), amount, dateInput.getValue().toString(), locationInput.getText());
-
-                    for(int i = 0; i < app.getBudgetHandler().getBudgets().size(); i++)
-                    {
-                        if(app.getBudgetHandler().getBudgets().get(i).getName().equals(budgetSelect.getSelectionModel().getSelectedItem()))
+                    
+                    if (theTransaction == null) {
+                        newTransaction = app.getTransactionHandler().createNewTransaction(theSelectedBudget.getID(), amount, dateInput.getValue().toString(), locationInput.getText());
+                        
+                        for(int i = 0; i < app.getBudgetHandler().getBudgets().size(); i++)
                         {
-                            app.getBudgetHandler().getBudgets().get(i).getTransactions().add(newTransaction);
+                            if(app.getBudgetHandler().getBudgets().get(i).getName().equals(budgetSelect.getSelectionModel().getSelectedItem()))
+                            {
+                                app.getBudgetHandler().getBudgets().get(i).getTransactions().add(newTransaction);
+                            }
                         }
                     }
+                    else {
+                        newTransaction = app.getTransactionHandler().editTransaction(theSelectedBudget.getID(), amount, dateInput.getValue().toString(), locationInput.getText());
+                        
+                        
+                    }
+                    
                 }
                 catch(NumberFormatException nfe)
                 {
@@ -179,6 +203,6 @@ public class TransactionViewController
         }
         
         budgetSelect.setItems(items);
-        budgetSelect.getSelectionModel().selectFirst();
+        budgetSelect.getSelectionModel().select(theTransaction.getBudgetID() - 1);
     }
 }

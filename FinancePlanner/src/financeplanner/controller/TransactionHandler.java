@@ -93,6 +93,35 @@ final public class TransactionHandler
         return newTransaction;
     }
     
+    public Transaction editTransaction(int budgetId, double amount, String timeStamp, String location) throws SQLException
+    {
+        Transaction newTransaction = new Transaction();
+        
+        newTransaction.setAmount(amount);
+        newTransaction.setBudgetID(budgetId);
+        
+        if(timeStamp == null)
+        {
+            newTransaction.setTimeStamp(getCurrentTime());
+        }
+        else
+        {
+            newTransaction.setTimeStamp(timeStamp);
+        }
+        
+        if(location == null)
+        {
+            newTransaction.setLocation("");
+        }
+        else
+        {
+            newTransaction.setLocation(location);
+        }
+        
+        //theConnector.addNewTransaction(newTransaction);
+        return newTransaction;
+    }
+    
     /*
     Returns current time
     */
