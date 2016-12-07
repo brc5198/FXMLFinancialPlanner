@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -119,7 +120,12 @@ public class DashController
             display.getRowConstraints().add(row);
             //Labels
             Budget budget = budgets.get(i);
-            Label categoryLabel = new Label(budgets.get(i).getName());
+            Hyperlink categoryLabel = new Hyperlink(budgets.get(i).getName());
+            final Budget theBudget = budgets.get(i);
+            categoryLabel.setOnAction((event) -> {
+                // Button was clicked, do something...
+                app.showBudgetWindow(theBudget);
+            });
             Label amountLabel = new Label(String.valueOf(BudgetHandler.calculateBudgetRemainder(budget)));
             //Label amountLabel = new Label(String.valueOf(budget.getAmount()));
             

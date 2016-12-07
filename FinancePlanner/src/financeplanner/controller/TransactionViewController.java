@@ -40,6 +40,7 @@ public class TransactionViewController
     
     private TransactionHandler transactionHandler;
     private Transaction theTransaction = null;
+    private int theOldBudget = -1;
 
     /**
      * Initializes the controller class.
@@ -59,6 +60,7 @@ public class TransactionViewController
         transactionHandler = app.getTransactionHandler();
         theTransaction = editingTransaction;
         
+        theOldBudget = theTransaction.getBudgetID();
         amountInput.setText(String.valueOf(theTransaction.getAmount()));
         locationInput.setText(theTransaction.getLocation());
         //dateInput.setChronology(value);
@@ -133,9 +135,25 @@ public class TransactionViewController
                         }
                     }
                     else {
-                        newTransaction = app.getTransactionHandler().editTransaction(theSelectedBudget.getID(), amount, dateInput.getValue().toString(), locationInput.getText());
+                        newTransaction = app.getTransactionHandler().editTransaction(transactionHandler.getTransactions().indexOf(theTransaction),
+                                theSelectedBudget.getID(), amount, dateInput.getValue().toString(), locationInput.getText());
                         
-                        
+                        for(int i = 0; i < app.getBudgetHandler().getBudgets().size(); i++)
+                        {
+                            if(app.getBudgetHandler().getBudgets().get(i).getName().equals(budgetSelect.getSelectionModel().getSelectedItem()))
+                            {
+                                if(app.getBudgetHandler().getBudgets().get(i).getTransactions().indexOf(newTransaction) == -1) {
+                                    try {
+                                        app.getBudgetHandler().getBudgets().get(theOldBudget).getTransactions().remove(theTransaction);
+                                    }
+                                    catch(Exception e) {
+                                        
+                                    }
+                                    
+                                    app.getBudgetHandler().getBudgets().get(i).getTransactions().add(newTransaction);
+                                }
+                            }
+                        }
                     }
                     
                 }
@@ -203,6 +221,12 @@ public class TransactionViewController
         }
         
         budgetSelect.setItems(items);
-        budgetSelect.getSelectionModel().select(theTransaction.getBudgetID() - 1);
+        
+        if (theTransaction != null) {
+            budgetSelect.getSelectionModel().select(theOldBudget);
+        }
+        else {
+            budgetSelect.getSelectionModel().select(0);
+        }
     }
 }

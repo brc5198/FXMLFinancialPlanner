@@ -6,6 +6,7 @@
 package financeplanner;
 
 import financeplanner.controller.*;
+import financeplanner.model.Budget;
 import financeplanner.model.Transaction;
 import financeplanner.model.User;
 import java.io.IOException;
@@ -62,7 +63,7 @@ public class FinancePlanner extends Application
         this.primaryStage.setTitle("Finance Planner");
         
         tHandler = new TransactionHandler();
-        bHandler = new BudgetHandler();
+        //bHandler = new BudgetHandler(this);
         
         try
         {
@@ -113,10 +114,12 @@ public class FinancePlanner extends Application
     /*
     Loads the dashboard view and its controller
     */
-    public void showDashWindow()
+    public void showDashWindow() throws SQLException
     {
         try
         {
+            bHandler = new BudgetHandler(this);
+            
             removeWindows();
             FXMLLoader loader = new FXMLLoader(FinancePlanner.class.getResource("view/Dash.fxml"));
             AnchorPane dashWindow = (AnchorPane)loader.load();
@@ -191,6 +194,26 @@ public class FinancePlanner extends Application
             
             BudgetViewController controller = loader.getController();
             controller.initialize(this);
+            budgetControl = controller;
+            primaryStage.setMinWidth(900);
+            primaryStage.setMaxWidth(900);
+        }
+        catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+    }
+    
+    public void showBudgetWindow(Budget theBudget)
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(FinancePlanner.class.getResource("view/BudgetView.fxml"));
+            AnchorPane budgetWindow = (AnchorPane)loader.load();
+            rootLayout.setLeft(budgetWindow);
+            
+            BudgetViewController controller = loader.getController();
+            controller.initialize(this, theBudget);
             budgetControl = controller;
             primaryStage.setMinWidth(900);
             primaryStage.setMaxWidth(900);

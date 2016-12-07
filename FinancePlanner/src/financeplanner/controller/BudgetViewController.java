@@ -29,6 +29,7 @@ public class BudgetViewController
     private FinancePlanner app;
     
     private BudgetHandler budgetHandler;
+    private Budget theBudget = null;
     
     /**
      * Initializes the controller class.
@@ -38,6 +39,17 @@ public class BudgetViewController
     {
         this.app = app;
         budgetHandler = app.getBudgetHandler();
+    }
+    
+    public void initialize(FinancePlanner app, Budget newBudget)
+    {
+        this.app = app;
+        budgetHandler = app.getBudgetHandler();
+        theBudget = newBudget;
+        
+        categoryInput.setText(theBudget.getName());
+        amountInput.setText(String.valueOf(theBudget.getAmount()));
+        
     }
     
     /*
@@ -74,7 +86,7 @@ public class BudgetViewController
     */
     public Budget requestNewBudget() throws SQLException
     {
-        Budget newBudget = null;
+        Budget newBudget = theBudget;
         double amount = 0.0;
         
         if(checkInput())
@@ -82,7 +94,13 @@ public class BudgetViewController
             try
             {
                 amount = Double.parseDouble(amountInput.getText());
-                newBudget = app.getBudgetHandler().createNewBudget(categoryInput.getText(), startInput.getValue().toString(), endInput.getValue().toString(), amount);
+                
+                if (newBudget == null) {
+                    newBudget = app.getBudgetHandler().createNewBudget(categoryInput.getText(), startInput.getValue().toString(), endInput.getValue().toString(), amount);
+                }
+                else {
+                    newBudget = app.getBudgetHandler().EditBudget(theBudget.getID(), categoryInput.getText(), startInput.getValue().toString(), endInput.getValue().toString(), amount);
+                }
             }
             catch(NumberFormatException nfe)
             {
@@ -126,4 +144,5 @@ public class BudgetViewController
         
         return complete;
     }
+
 }

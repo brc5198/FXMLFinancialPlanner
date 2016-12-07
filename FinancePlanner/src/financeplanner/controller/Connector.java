@@ -192,7 +192,7 @@ public class Connector {
      
     }
     
-    public static void updateTransaction(Transaction t1) throws SQLException{
+    public void updateTransaction(Transaction t1) throws SQLException{
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();
 
@@ -243,14 +243,14 @@ public class Connector {
 
     }
     
-        public static void updateBudget(Budget b1) throws SQLException{
+        public void updateBudget(Budget b1) throws SQLException{
         Connection conn = ConnectionToMySql();
         Statement stmt = conn.createStatement();
 
         String updateStatement = "UPDATE Budget SET name = ?, StartTime = ?, EndTime = ?, amount = ? WHERE Budget_ID = ?";
         PreparedStatement ps = conn.prepareStatement(updateStatement);
 
-        ps.setDouble(1, b1.getAmount());
+        ps.setString(1, b1.getName());
         ps.setString(2, b1.getStartTime());
         ps.setString(3, b1.getEndTime());
         ps.setDouble(4, b1.getAmount());

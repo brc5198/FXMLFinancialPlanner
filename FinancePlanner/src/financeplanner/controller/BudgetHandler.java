@@ -5,6 +5,7 @@
  */
 package financeplanner.controller;
 
+import financeplanner.FinancePlanner;
 import financeplanner.model.Budget;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -27,8 +28,9 @@ final public class BudgetHandler
     private static ArrayList<Budget> budgets;
     
     private Connector theConnector;
+    private FinancePlanner app;
     
-    public BudgetHandler() throws SQLException
+    public BudgetHandler(FinancePlanner app) throws SQLException
     {
         budgets = new ArrayList();
         
@@ -41,7 +43,7 @@ final public class BudgetHandler
             sqle.printStackTrace();
         }
         
-        budgets.addAll(theConnector.populateBudgetArrayList(1));
+        budgets.addAll(theConnector.populateBudgetArrayList(app.getUser().getUsesrID()));
         
         /**
         Something like this would be how to start this
@@ -111,6 +113,44 @@ final public class BudgetHandler
         theConnector.addNewBudget(newBudget);
         return newBudget;
     }
+    
+    public Budget EditBudget(int index, String name, String startTime, String endTime, double amount) throws SQLException
+    {
+        Budget newBudget = budgets.get(index);
+        
+        if(name == null)
+        {
+            newBudget.setName("New Budget");
+        }
+        else
+        {
+            newBudget.setName(name);
+        }
+        
+        if(startTime == null)
+        {
+            newBudget.setStartTime(getCurrentTime());
+        }
+        else
+        {
+            newBudget.setStartTime(startTime);
+        }
+        
+        if(endTime == null)
+        {
+            newBudget.setEndTime(getCurrentTime());
+        }
+        else
+        {
+            newBudget.setEndTime(startTime);
+        }
+        
+        newBudget.setAmount(amount);
+        
+        theConnector.updateBudget(newBudget);
+        return newBudget;
+    }
+    
     /*
     Given a list of budgets, calculates the sum of all the budget limits
     */

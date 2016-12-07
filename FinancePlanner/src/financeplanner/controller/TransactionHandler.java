@@ -93,9 +93,9 @@ final public class TransactionHandler
         return newTransaction;
     }
     
-    public Transaction editTransaction(int budgetId, double amount, String timeStamp, String location) throws SQLException
+    public Transaction editTransaction(int index, int budgetId, double amount, String timeStamp, String location) throws SQLException
     {
-        Transaction newTransaction = new Transaction();
+        Transaction newTransaction = transactions.get(index);
         
         newTransaction.setAmount(amount);
         newTransaction.setBudgetID(budgetId);
@@ -118,7 +118,7 @@ final public class TransactionHandler
             newTransaction.setLocation(location);
         }
         
-        //theConnector.addNewTransaction(newTransaction);
+        theConnector.updateTransaction(newTransaction);
         return newTransaction;
     }
     
