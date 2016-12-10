@@ -8,6 +8,9 @@ package financeplanner.controller;
 import financeplanner.FinancePlanner;
 import financeplanner.model.Budget;
 import financeplanner.model.Transaction;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -54,6 +57,23 @@ public class HistoryController {
     {
         app.removeWindows();
         app.showDashWindow();
+    }
+    
+    @FXML
+    private void handlePrintButton() throws IOException
+    {
+        File theFile = new File("output.txt");
+        FileWriter writer = new FileWriter(theFile); 
+        for(int i = 0; i < transactions.size(); i++) {
+            writer.write(transactions.get(i).getLocation() + " ");
+            writer.write(String.valueOf(transactions.get(i).getAmount()) + " ");
+            writer.write(transactions.get(i).getTimeStamp() + "\n");
+        }
+        writer.close();
+        
+        Runtime.getRuntime().exec(new String[]
+            {"rundll32", "url.dll,FileProtocolHandler",
+             theFile.getAbsolutePath()});
     }
     
     public void refresh()

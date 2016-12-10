@@ -116,7 +116,7 @@ final public class BudgetHandler
     
     public Budget EditBudget(int index, String name, String startTime, String endTime, double amount) throws SQLException
     {
-        Budget newBudget = budgets.get(index);
+        Budget newBudget = budgets.get(index -1);
         
         if(name == null)
         {

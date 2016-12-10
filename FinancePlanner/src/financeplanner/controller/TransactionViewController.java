@@ -238,7 +238,7 @@ public class TransactionViewController
         budgetSelect.setItems(items);
         
         if (theTransaction != null) {
-            budgetSelect.getSelectionModel().select(theOldBudget);
+            budgetSelect.getSelectionModel().select(theOldBudget -1);
         }
         else {
             budgetSelect.getSelectionModel().select(0);
